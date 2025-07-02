@@ -728,3 +728,36 @@ function raiseError(e, contextID) {
 window.document.oncontextmenu = function () {
   return true;
 };
+
+var $loading = (function () {
+  // Private function to create the loading HTML if it doesn't exist
+  function createLoading() {
+    if ($("#Spinner_Loding").length === 0) {
+      $("body").append(`
+                <div id="Spinner_Loding" class="modal modal-primary in" style="z-index: 9999999; background: rgba(0, 0, 0, 0.18); display: none;">
+                    <div class="spinner-container">
+                        <div class="lds-ellipsis">
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+                    </div>
+                </div>
+            `);
+    }
+  }
+
+  // Public methods
+  return {
+    show: function () {
+      createLoading();
+      $("#Spinner_Loding").show();
+    },
+    hide: function () {
+      $("#Spinner_Loding").hide();
+    },
+    // Optional: Toggle method if needed
+    toggle: function () {
+      createLoading();
+      $("#Spinner_Loding").toggle();
+    },
+  };
+})();
