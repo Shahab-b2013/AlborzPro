@@ -1,0 +1,46 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.0.0.8*/
+
+.login-box {
+    background-color: #f0f3f3; /*@LightColor-A2*/
+    border: solid 1px #3A5BA0; /*@MainColor-A1*/
+}
+
+.login-box-body {
+    background-color: #f0f3f3; /*@LightColor-A2*/
+}
+
+.login-box-label {
+    color: #73879c; /*@MainColor-B3*/
+    font-size: 15px;
+    font-family: 'IRANSansWeb';
+}
+
+.login-box-link {
+    font-size: 13px;
+    font-family: 'IRANSansWeb';
+}
+
+.login-box-msg {
+    font-size: 13px;
+    font-family: 'IRANSansWeb';
+}
+
+.login-box-title {
+    color: #73879c !important; /*@MainColor-B3*/
+    font-size: 25px;
+    font-family: 'IRANSansWeb';
+}
+
+.btn-login {
+    background-color: #3A5BA0; /*@MainColor-A1*/
+    color: #f0f3f3; /*@LightColor-A2*/
+    font-family: 'IRANSansWeb';
+    width: 100px;
+}
+
+.btn-login-long {
+    background-color: #3A5BA0; /*@MainColor-A1*/
+    font-family: 'IRANSansWeb';
+    color: #f0f3f3; /*@LightColor-A2*/
+}

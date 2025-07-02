@@ -1,0 +1,36 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2024 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 4.1.0.0*/
+
+.btn-download-detail {
+    color:var(--A1);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+dl {
+    border: 1px solid #f1ecec !important;
+    border-bottom: 0px solid #f1ecec !important;
+    margin: 0px 0px 0px 0px !important;
+    padding: 0px 0px 0px 0px !important;
+}
+
+dt {
+    min-height: 40px !important;
+    border-left: 0px solid #f1ecec !important;
+    border-bottom: 0px solid #f1ecec !important;
+    margin-right: 0px !important;
+    padding-right: 5px;
+    color: gray;
+    display: flex;
+    align-items: center;
+    width: 300px !important;
+}
+
+dd {
+    border-bottom: 0px solid #f1ecec !important;
+    min-height: 40px !important;
+    margin-right: 0px !important;
+    padding-right: 5px;
+    align-items: center;
+    display: flex;
+}

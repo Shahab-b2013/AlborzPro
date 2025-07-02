@@ -1,0 +1,65 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.0.0.9*/
+
+.login-box {
+    border: solid 0px #080E4B; /*@MainColor-A1*/
+    border-radius: 10px;
+}
+
+.login-box-body {
+    background-color: transparent !important; /*@LightColor-L3*/
+    border-radius: 10px;
+}
+
+.login-box-label {
+    color: #73879c; /*@MainColor-B3*/
+    font-size: 15px;
+    font-family: 'IRANSansWeb';
+}
+
+#username {
+    border-radius: 10px;
+}
+
+#password {
+    border-radius: 10px;
+}
+
+.login-box-link {
+    font-size: 13px;
+    font-family: 'IRANSansWeb';
+}
+
+.login-box-msg {
+    font-size: 13px;
+    font-family: 'IRANSansWeb';
+}
+
+.login-box-title {
+    color: #73879c !important; /*@MainColor-B3*/
+    font-size: 35px;
+    font-family: 'IRANSansWeb';
+}
+
+.btn-login {
+    background-color: #080E4B; /*@MainColor-A1*/
+    color: #f0f3f3; /*@LightColor-L3*/
+    font-family: 'IRANSansWeb';
+    width: 100px;
+    border-radius: 10px !important;
+    border:blue 1px solid;
+}
+
+button.btn-login:hover {
+    color: #f0f3f3; /*@LightColor-L3*/
+}
+
+button.btn-login:active {
+    color: #f0f3f3; /*@LightColor-L3*/
+}
+
+.btn-login-long {
+    background-color: #080E4B; /*@MainColor-A1*/
+    font-family: 'IRANSansWeb';
+    color: #f0f3f3; /*@LightColor-L3*/
+}

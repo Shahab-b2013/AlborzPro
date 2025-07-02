@@ -1,0 +1,179 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.1.1.0*/
+
+.form-group-box {
+    margin: 20px 20px 20px 20px !important;
+    padding: 0px 20px 20px 15px !important;
+    border-bottom: solid 1px #e6e9ed; /*@MainColor-B4*/
+}
+
+    .form-group-box .group-info {
+        padding: 0px 20px 20px 20px !important;
+        
+    }
+
+    .form-group-box .group-body {
+        padding: 0px 20px 0px 20px !important;
+    }
+
+    .form-group-box .group-title {
+        font-family: 'IRANSansWeb';
+        font-size: 16px;
+        color: #2a3f54;
+    }
+
+        .form-group-box .group-title small {
+        font-size: 14px;
+    }
+
+/*.form-control {
+    border-color: #d2d6de!important;
+}*/
+
+.form-control:focus {
+    border-color: #307cba !important; /*@MainColor-A1*/
+}
+
+.form-input {
+    background-color: #fffbf9 !important; /*@MainColor-A1*/
+    border-radius: 0px 0px 0px 0px !important;
+}
+
+.form-input-dis {
+    background-color: #99a5b4 !important; /*X*/
+    border-radius: 0px 0px 0px 0px !important;
+}
+
+.form-taskrefer-setp {
+    color: #307cba; /*@MainColor-A1*/
+}
+
+.form-taskrefer-label {
+    text-align: left;
+}
+
+.form-taskrefer-box {
+    text-align: right;
+}
+
+.form-sla-setp {
+    color: #307cba; /*@MainColor-A1*/
+}
+
+.form-tim-box {
+    text-align: left;
+}
+
+.form-time-label {
+    text-align: right;
+}
+
+.form-input-placeholder {
+    color: #99a5b4;/*@MainColor-B4*/
+}
+
+.btn-browse-file {
+    background-color: #ffffff !important;
+    height: 34px;
+    color: #307cba; /*@MainColor-A1*/
+}
+
+.btn-remove-file {
+    background-color: #ffffff !important;
+    height: 34px;
+    color: #e08484;
+}
+
+.btn-form-submit {
+    color: #f6f6f6;
+    font-family: 'IRANSansWeb';
+    background-color:#307cba; /*@MainColor-AX*/
+    width: 100px;
+    border-color: #307cba; /*@MainColor-A1*/
+}
+
+    .btn-form-submit:hover,
+    .btn-form-submit:focus,
+    .btn-form-submit.focus,
+    .btn-form-submit:active,
+    .btn-form-submit.active {
+        background-color: #307cba !important; /*@MainColor-A1*/
+        color: #ffffff;
+    }
+
+.btn-danger {
+    font-family: 'IRANSansWeb';
+}
+
+.btn-form-cancel {
+    font-family: 'IRANSansWeb';
+}
+
+.input-group-addon {
+    color: #307cba !important; /*@MainColor-A1*/
+}
+
+.input-checkbox-label {
+    font-weight: bold;
+    padding-right: 0px !important;
+}
+
+[data-name="today"] {
+    background: #307cba !important; /*@MainColor-A1*/
+}
+
+    [data-name="today"]:hover {
+        background: #307cba !important; /*@MainColor-A1*/
+    }
+
+[data-name="day"]:not([class^="text"]) {
+    color: #333;/*X*/
+}
+
+[data-name="day"]:hover {
+    background: #eee;/*X*/
+}
+
+[data-name="Md-PersianDateTimePicker"] table {
+    font-family: 'IRANSansWeb';
+}
+
+.popover {
+    border-radius: 0px 0px 0px 0px !important;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+    background-color: #307cba !important; /*@MainColor-A1*/
+}
+
+.message-form-success {
+    font-family: 'IRANSansWeb';
+    color: green;
+    font-size:15px;
+}
+
+.message-form-error {
+    font-family: 'IRANSansWeb';
+    color: red;
+    font-size:15px;
+}
+
+.message-form-block {
+    font-family: 'IRANSansWeb';
+}
+
+.kv-file-content img {
+    max-width: 300px;
+}
+
+.form-link {
+    color: #307cba !important; /*@MainColor-A1*/
+    font-family: 'IRANSansWeb';
+}
+
+.form-text-view {
+    color: #5E99C5 !important; /*@MainColor-A2*/
+    font-weight: bold;
+}

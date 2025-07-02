@@ -1,0 +1,1021 @@
+/* Code File(Amnpardaz Software Co. Copyright 2021 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 2.5.2.0*/
+
+@font-face {
+    font-family: 'IRANSansWeb';
+    src: url('Fonts/IRANSansWeb.woff') format('woff'),
+        url('Fonts/IRANSansWeb_Light.woff') format('woff');
+    /* Add more src declarations for different font file formats if needed */
+}
+
+body {
+    font-family: 'IRANSansWeb';
+    color: #000;
+}
+
+.alertListDiv {
+    font-size: 12px;
+    font-family: 'IRANSansWeb';
+    margin-left: 7px;
+    margin-right: 7px;
+    border: 1px solid #d2d6dea6;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 0px
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+.Incident_details summary {
+    list-style: none;
+    color: #99a5b4;
+}
+
+.boldLi {
+    color: #99a5b4;
+    font-family: 'IRANSansWeb';
+    font-size: 18px;
+    margin-left: 10px;
+    padding-top: 8px;
+    padding-bottom: 5px;
+}
+
+.boldAlertLi {
+    font-weight: bold;
+    padding-left: 30px;
+}
+
+.redLi {
+    font-weight: bold;
+    color: red !important;
+}
+
+.table-responsive {
+    overflow: auto;
+}
+
+.smokeColor {
+    background-color: #fafafa;
+    margin-bottom: 0px !important;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+th,
+td {
+    border: 2px solid black;
+    text-align: left;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.hiddenTblBorder {
+    border-top: none;
+}
+
+.hiddenDownBorder {
+    border-bottom: none;
+}
+
+.yellowColor {
+    background-color: #ffc000 !important;
+}
+
+.goToNewLine {
+    word-wrap: break-word;
+}
+
+.tableUl {
+    padding-left: 0px;
+    margin-bottom: 0px !important;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    /* z-index: 1; */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto auto;
+    padding: 7px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #f2f2f2;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* select, */
+/* input { */
+/* width: 100%; */
+/* padding: 8px; */
+/* margin: 5px 0; */
+/* display: inline-block; */
+/* border: 1px solid #ccc; */
+/* border-radius: 4px; */
+/* box-sizing: border-box; */
+/* } */
+
+#loadingIcon {
+    display: none;
+}
+
+#alertTable {
+    margin-top: 5px;
+}
+
+.incidentTable th {
+    padding: 8px;
+    text-align: center;
+}
+
+.incidentTable td {
+    padding: 8px;
+    text-align: center;
+    background-color: white
+}
+
+
+.form-group label {
+    flex: 1;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.form-group select,
+.form-group input {
+    flex: 2;
+}
+
+.list-group-item-info {
+    background-color: aquamarine;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+.colorIcon {
+    margin-right: 10px;
+}
+
+.titleValue {
+    color: var(--A1);
+    font-size: 12px;
+    display: inline-block;
+    font-weight: 600
+}
+
+.closeButton {
+    margin-bottom: 3px;
+    -webkit-text-fill-color: #ffff;
+    font-weight: bold;
+}
+
+.ellipsis {
+    max-width: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#commentCloseBtn {
+    padding: .1rem .5em;
+}
+
+#commentDescriptionText {
+    min-height: 284px;
+    text-align: right;
+}
+
+.plusBtn {
+    color: #ffff;
+    padding: 0;
+    /* font-size: x-large; */
+    background-color: transparent;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+}
+
+#alertModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 49.5%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+#unmergeModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+#commentModal>.modal-dialog>.modal-content {
+    min-width: 400px;
+    max-width: 400px;
+}
+
+@media (max-width: 768px) {
+    #alertModal>.modal-dialog>.modal-content {
+        min-width: 90%;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    #alertModal>.modal-dialog>.modal-content {
+        min-width: 60%;
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 1300px;
+        margin: 1.75rem auto;
+    }
+}
+
+.allAlertsLegend {
+    display: inline-flex;
+    float: right;
+    clear: both;
+}
+
+.allAlertsLegend>input {
+    width: auto !important;
+    padding: 0px;
+    margin: 0px 8px;
+}
+
+.alertItem>input {
+    display: inline-flex;
+    width: auto !important;
+    padding: 0px;
+    margin: 0px 8px;
+
+}
+
+.alertItem {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.alertItem input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.alertItemDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alertItemDiv>input {
+    width: auto;
+    margin: 5px;
+
+}
+
+.titleBold {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+
+
+.expand-btn {
+    cursor: pointer;
+}
+
+.AlertDetails {
+    padding: 10px;
+    background-color: #f9f9f9;
+    text-align: left !important;
+}
+
+.mergeToExpand-btn {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+#myMessageInput {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    /* width: 150px; */
+    font-size: 16px;
+    border: 1px solid #ddd;
+    margin: 0px 5px;
+    float: right;
+    height: 28px;
+}
+
+#selectAll {
+    display: inline-flex;
+    width: min-content;
+    margin-right: 3px;
+    margin-bottom: 0px;
+}
+
+#myIncidentInput {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 60%;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    margin: 0px 5px;
+    float: right;
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+}
+
+.headerDiv {
+    display: inline-flex;
+}
+
+.headerDiv button {
+    margin-left: 15px;
+    margin-top: 0px;
+}
+
+.rightDiv {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .rightDiv label{ */
+/* margin-right: 40px; */
+
+/* } */
+
+.rightDiv label {
+
+    width: 40%;
+    padding: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-bottom: 5px;
+}
+
+.pagination button,
+.incidentButton button {
+    border: 1px solid #ccc;
+}
+
+#statusDropDown {
+    padding: 0px 0;
+    text-align: center;
+    margin: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+
+#statusDropDown option {
+    text-align: center;
+}
+
+#statusTable th,
+#statusTable td {
+    padding: 0px 8px 0px 0px;
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+    margin: 0px;
+    background-color: #fff;
+    border-top: 1px solid #e2d4e3;
+    vertical-align: middle;
+}
+
+.table-container {
+    border-top: 1px solid #e2d4e3;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+    overflow: hidden;
+    margin-bottom: 3px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 19px;
+    padding-top: 26px;
+}
+
+#statusTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0px;
+}
+
+#gridListTable {
+    border-right-width: 1px;
+    border-left-width: 1px;
+}
+
+#gridListTable th {
+    background-color: #f7f7f7 !important;
+    color: #73879c !important;
+    font-size: 13px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-family: 'IRANSansWeb' !important;
+    font-weight: bold !important;
+
+
+}
+
+.gridList {
+    font-size: 13px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-family: 'IRANSansWeb' !important;
+
+}
+
+#gridListTable td {
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 200px;
+
+}
+
+.searchTextBoxes {
+    display: inline-flex;
+    width: 75%;
+    overflow: hidden;
+}
+
+.headerItems {
+    background-color: #ffffff;
+}
+
+.incidentButton {
+    display: inline-flex;
+}
+
+.viewPageBtn {
+    margin-left: 2px;
+}
+
+.pagination {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.mx-3 {
+    margin-left: 0.2rem !important;
+    margin-right: 0.2rem !important;
+}
+
+.comboDiv {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-right: 13px;
+}
+
+
+.comboDiv label {
+    margin-right: 1px;
+    font-weight: normal;
+}
+
+.comboDiv select {
+    margin-right: 1px;
+}
+
+#rowsPerPage {
+    min-width: 34px;
+    margin: 0px 2px 0px 2px;
+    padding: 3px;
+    text-align: center;
+}
+
+.statusDropDown {
+    width: 8%;
+}
+
+.custom-input {
+    height: 28px;
+}
+
+.btnClass {
+    color: #000000c7;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd !important;
+}
+
+.btnClass:hover,
+.btnClass:focus .btnClass :active {
+    z-index: 2;
+    color: #73879c;
+    cursor: default;
+    background-color: #f6f0f7;
+    border-color: #c34ee4 !important;
+}
+
+.trHover:hover {
+    background-color: #f6f0f7;
+}
+
+#UnmergeTable,
+#MessageTable {
+    background-color: #fff;
+    border: 1px solid #e7e7e7 !important;
+}
+
+
+
+#UnmergeNewIncidentBtn {
+    min-width: 80px;
+    background-color: #e2d4e3;
+}
+
+.list-group-item-primary {
+    background-color: #f6f6f6;
+}
+
+
+.commentListDiv {
+    border: 1px solid #9add7f;
+    box-shadow: 0 4px 8px rgb(19 143 12 / 10%);
+    /* border-top-left-radius: 5px; */
+    /* border-top-right-radius: 5px; */
+}
+
+.incidentListDiv {
+    border: 1px solid #bbb4b4;
+    box-shadow: 0 4px 8px rgba(163, 136, 136, 0.1);
+    /* border-top-left-radius: 5px; */
+    /* border-top-right-radius: 5px; */
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.iocListDiv {
+    border: 1px solid #9fa5b9;
+    box-shadow: 0 4px 8px rgba(164, 185, 241, 0.1);
+    /* border-top-left-radius: 5px; */
+    /* border-top-right-radius: 5px; */
+}
+
+.divStatusDate {
+    display: inline-flex;
+}
+
+.container {
+    width: 100%;
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
+
+.main-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    position: fixed;
+}
+
+#statusTable>thead>tr>th {
+    font-weight: normal;
+}
+
+.custom-fieldset {
+    margin: 5px;
+    margin-left: 12px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    position: relative;
+}
+
+.custom-legend {
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    background: #fafafa;
+    padding: 0 5px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    /* gap: 5px;  */
+}
+
+.tablesPlusBtn {
+    position: absolute;
+    padding: 1px 1px 1px 1px;
+    transform: translateY(10%);
+    left: -8px;
+    background: #fafafa;
+    height: min-content;
+}
+
+.custom-legend-sub {
+    padding-top: 5px;
+}
+
+/* Append GridView.css ------------------------------------------------------------------------------ */
+.table-bordered {
+    border: 0px solid #e7e7e7;
+    border-top-color: #e7e7e7;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: #e7e7e7;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: #e7e7e7 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #e7e7e7;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.table-bordered>tbody>tr>td {
+    border: 0px solid #e7e7e7;
+    border-top-color: #e7e7e7;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: #e7e7e7;
+    border-right-style: solid;
+    border-right-width: 0px;
+    border-bottom-color: #e7e7e7 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #e7e7e7;
+    border-left-style: solid;
+    border-left-width: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>tfoot>tr>td {
+    border: 0px solid #e7e7e7;
+    border-top-color: #e7e7e7;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: #e7e7e7;
+    border-right-style: solid;
+    border-right-width: 0px;
+    border-bottom-color: #e7e7e7 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-left-color: #e7e7e7;
+    border-left-style: solid;
+    border-left-width: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.control-sidebar-bg,
+.control-sidebar {
+    /* top: auto; */
+    padding-top: auto;
+    right: auto;
+    width: auto;
+}
+
+.pageDiv {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-right: 13px;
+    left: 0;
+}
+
+/* Bootstrap 5 ----------------------------------------------Start */
+
+/* *, ::after, ::before { */
+/* box-sizing: border-box; */
+/* } */
+
+@media (min-width: 576px) {
+    .modal-dialog-scrollable {
+        height: calc(100% - 3.5rem);
+    }
+}
+
+
+
+.modal-header {
+    margin: 5px 0;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px !important;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+    ;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-family: 'IRANSansWeb';
+}
+
+.h5,
+h5 {
+    font-size: 1.25rem;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    font-weight: 500;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.btn-group-sm>.btn,
+.btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: .2rem;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.modal-dialog-scrollable .modal-body {
+    overflow-y: auto;
+}
+
+.modal-dialog-scrollable .modal-content {
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    text-align: center;
+    padding: 5px;
+}
+
+.table-bordered>:not(caption)>* {
+    border-width: 1px 0;
+}
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0rem 0rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(.3rem - 1px);
+    border-bottom-left-radius: calc(.3rem - 1px);
+}
+
+img,
+svg {
+    vertical-align: middle;
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+.modal-footer>* {
+    margin: .25rem;
+}
+
+.btn {
+    border: 1px solid transparent;
+}
+
+@media (min-width: 1200px) {
+    .modal-dialog {
+        min-width: 1000px;
+        width: 1200px !important;
+    }
+}
+
+
+.Incident-box-header {
+    background-color: var(--A1);
+    /*@MainColor-A1*/
+}
+
+.Incident-box-header h3 {
+    font-size: 18px;
+    color: white;
+}
+
+
+#pageBoxModal2 .box-header {
+    background-color: var(--A1);
+    /*@MainColor-A1*/
+}
+
+#pageBoxModal3 .box-header {
+    background-color: var(--A1);
+    /*@MainColor-A1*/
+}
+
+#boxTitleModal1 {
+    color: #e7e7e7;
+    /*@LightColor-A3*/
+}
+
+#boxTitleModal2 {
+    color: #e7e7e7;
+    /*@LightColor-A3*/
+}
+
+#boxTitleModal3 {
+    color: #e7e7e7;
+    /*@LightColor-A3*/
+}
+
+.Incident-box-header>.Incident-box-tools {
+    position: absolute;
+    right: 15px;
+}
+
+.Incident-box-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.Incident-box-title {
+    margin: 10px;
+}
+
+#closeBtnModal2 {
+    color: white !important;
+    font-size: 15px !important;
+    background-color: transparent;
+    border: 0px;
+    padding-bottom: 4px;
+}
+
+#alertModalLabel,
+#IncidentModalLabel {
+    font-size: 12px;
+    /* font-weight: 600; */
+}
+
+
+.btn-edit {
+    border: 1px solid #dddddd !important;
+    box-shadow: 3px 3px 12px 1px #ebeaea !important;
+    background-color: #ffffff;
+}
+
+.direct-chat-messages {
+    height: auto;
+    display: block;
+    border: 1px solid rgb(204, 204, 204);
+    margin: 10px 10px 0px;
+    border-radius: 5px;
+    padding: 15px !important;
+}
+
+.FooterMessage {
+    float: right;
+    color: #dd4b39;
+    font-family: 'IRANSansWeb';
+    font-weight: 600;
+}
+
+
+.unmergeRadio {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* 20241102 */

@@ -1,0 +1,2852 @@
+/* Code File(Amnpardaz Software Co. Copyright 2024 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 4.2.0.0*/
+
+body {
+    --mainFont: 'IRANSansWeb';
+    font-family: var(--mainFont) !important;
+    --OffDays: var(--Gray);
+    height: 99%;
+    --yekanFont: 'Yekan';
+    --primary: #3466A9;
+}
+
+select, option {
+    background: #fff;
+    font-family: var(--mainFont) !important;
+    -moz-appearance: none; /* Disable default Firefox rendering */
+    appearance: none; /* For other browsers */
+}
+
+html {
+    height: 99%;
+}
+
+@font-face {
+    font-family: "Yekan";
+    src: url("../../../App_Base/Css/Fonts/Yekan.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "IRANSansWeb_Light";
+    src: url("../../../App_Base/Fonts/IRANSansWeb_Light.woff") format("truetype");
+}
+
+.calendarContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.titleCalendar {
+    justify-content: space-between;
+    display: flex !important;
+    align-items: center;
+}
+
+.mainDiv {
+    margin: 0;
+    height: 100%;
+}
+
+.headerCalendar {
+    display: flex;
+    color: var(--A1);
+    justify-content: space-between;
+    align-items: center
+}
+
+.WeekDays {
+    display: flex !important;
+    height: 87%;
+}
+
+.NameDay {
+    text-align: center;
+    border: 1px solid;
+}
+
+#targetTable {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+    #targetTable th,
+    #targetTable td {
+        border: 5px solid #fff;
+        text-align: center;
+    }
+
+
+.weekdays-row th {
+    height: 50px;
+}
+
+#monthPopup {
+    display: none;
+    position: fixed;
+    top: 22%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    background-color: var(--White);
+    border: 1px solid var(--A1);
+    padding: 0 20px;
+    z-index: 1000;
+    text-align: right;
+    padding-right: 0;
+}
+
+    #monthPopup ul li:hover {
+        cursor: pointer;
+        color: var(--A1);
+        transition: 0.3s
+    }
+
+    #monthPopup ul {
+        list-style-type: decimal;
+    }
+
+.overlay,
+.overlay2,
+.overlay3,
+.overlay4,
+.overlay5,
+.overlay6,
+.overlay7,
+.overlay8,
+.overlayPopupFormUserTrack,
+.overlayUserTracksPopup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.overlayUserTracksPopup {
+    z-index: 1500;
+    position: fixed;
+}
+
+.overlay3,
+.overlay4,
+.overlay5,
+.overlay6,
+.overlay7,
+.overlay8,
+.overlayPopupFormUserTrack,
+.overlayUserTracksPopup {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#yearPopup {
+    display: none;
+    position: fixed;
+    top: 31%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 0 20px;
+    z-index: 1000;
+    text-align: center;
+    padding-right: 0;
+    border: 1px solid var(--A1);
+}
+
+    #yearPopup ul li:hover {
+        cursor: pointer;
+        color: var(--A1);
+        transition: 0.3s
+    }
+
+
+.datePicker {
+    display: flex;
+    font-family: var(--yekanFont)
+}
+
+    .datePicker input {
+        width: 100px;
+        font-size: smaller !important;
+        text-align: center !important;
+        margin: 5px;
+        border-radius: 5px;
+        color: #000;
+        border: 1px solid var(--A1);
+    }
+
+.errorInput {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-family: "IRANSansWeb_Light";
+    position: absolute;
+    top: 40px;
+    background-color: var(--White);
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+}
+
+.todayAction {
+    color: var(--A1);
+    border: 1px solid var(--A2);
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+    .todayAction:hover {
+        background-color: var(--A2);
+        color: var(--White);
+        cursor: pointer;
+        transition: 0.3s
+    }
+
+.deletedSelectedDays {
+    background-color: var(--White);
+    color: var(--A1);
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--A2);
+    width: 25px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .deletedSelectedDays:hover {
+        background-color: var(--A2);
+        color: var(--White);
+        cursor: pointer;
+        transition: 0.3s
+    }
+
+.go {
+    background-color: var(--White);
+    padding: 4px 5px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid var(--A2);
+    font-size: small;
+}
+
+.listEventSpan,
+.listUserTrackSpan,
+.selectCellSpan {
+    padding: 4px 5px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid var(--A2);
+    margin-left: 5px;
+    font-size: small;
+}
+
+.listUserTrackSpan {
+    margin: 5px 5px;
+    margin-left: 0;
+}
+
+    .listEventSpan:hover,
+    .listUserTrackSpan:hover,
+    .selectCellSpan:hover {
+        cursor: pointer;
+        background-color: var(--A2);
+        color: var(--White);
+        transition: 0.3s
+    }
+
+.go:hover {
+    cursor: pointer;
+    background-color: var(--A2);
+    color: var(--White);
+    transition: 0.3s
+}
+
+.iconDatePicker {
+    margin-right: 10px;
+}
+
+.iconBack {
+    margin-left: 10px;
+}
+
+.buttonApp,
+.addEvent {
+    align-items: center;
+    background-color: var(--White);
+    color: var(--A1);
+    border-color: var(--A2);
+    border-radius: 5px;
+}
+
+.buttonApp2,
+.cancelButton,
+.closeBtnListEvent {
+    align-items: center;
+    background-color: var(--White);
+    color: var(--A1);
+    border-color: var(--A1);
+    border-radius: 5px;
+}
+
+@media (max-width: 660px) {
+    .buttonApp {
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+.buttonApp:hover,
+.addEvent:hover {
+    background-color: var(--A3);
+    cursor: pointer;
+    color: var(--A1);
+}
+
+.buttonApp2:hover,
+.cancelButton:hover,
+.closeBtnListEvent:hover {
+    background-color: var(--A3);
+    cursor: pointer;
+    color: var(--A1);
+    transition: 0.3s
+}
+
+.iconNext {
+    margin-right: 10px;
+}
+
+.navigationButton .tooltiptext {
+    visibility: hidden;
+    width: max-content;
+    background-color: var(--A1);
+    color: var(--White);
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    top: 35px;
+    border: 1px solid var(--White);
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+#nextMonth .tooltiptext {
+    left: 0
+}
+
+#nextMonth {
+    margin-right: 20px !important;
+}
+
+#prevMonth {
+    margin-left: 20px !important;
+}
+
+.navigationButton:hover .tooltiptext {
+    visibility: visible;
+    transition: 0.3s
+}
+
+#currentMonth,
+#currentYear {
+    font-size: medium;
+    font-family: var(--yekanFont)
+}
+
+
+
+
+.popupEvent,
+.popupEditEvent {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--White);
+    border: 1px solid var(--A1);
+    border-radius: 10px;
+    z-index: 9999;
+    text-align: center;
+    width: 25%;
+    min-width: 300px;
+}
+
+#targetTable {
+    table-layout: fixed;
+    width: 100%;
+    font-family: var(--yekanFont);
+    -webkit-user-select: none;
+    /* Chrome, Safari, and Opera */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed syntax */
+}
+
+jdp-container {
+    font-family: var(--yekanFont);
+    z-index: 1050 !important;
+}
+
+#targetTable th {
+    font-weight: 600 !important;
+    font-family: var(--mainFont);
+    background: var(--White);
+    color: #838383;
+}
+
+#targetTable th,
+#targetTable td {
+    width: 14.28%;
+    /* 100% / 7 columns */
+    border-radius: 12px;
+    height: 60px !important;
+}
+
+#targetTable td {
+    position: relative;
+}
+
+.popupCalendar #targetTable td {
+    background-color: #C2FFC7;
+}
+
+.iconClock {
+    position: absolute !important;
+    left: 30px;
+    margin-top: 2px;
+    color: var(--A1);
+}
+
+.iconEventDay {
+    position: absolute;
+    left: 10px;
+    margin-top: 2px;
+    color: var(--warning);
+}
+
+    .iconEventDay:hover {
+        cursor: pointer;
+        transition: 0.3s
+    }
+
+.listEventTable th,
+.listEventTable td {
+    width: 12.5% !important;
+}
+
+.eventPopup {
+    color: var(--A1);
+}
+
+.iconEventPopup {
+    position: absolute !important;
+    right: 10px;
+    color: var(--A1);
+}
+
+.iconEventPopupTime {
+    position: absolute !important;
+    right: 12px;
+    color: var(--A1);
+}
+
+.popupRow {
+    display: flex;
+    align-items: center;
+    padding: 5px 40px;
+}
+
+#eventDate,
+#eventEditDate {
+    font-size: 14px;
+    text-align: right;
+    margin: 0;
+    font-family: var(--yekanFont)
+}
+
+.popopEventObject {
+    margin-right: 50px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.timePopupEvent,
+.eventTypePopup,
+.eventRepeatPopup,
+.eventRepeatCustomPopup,
+.eventRepeatNumberPopupEvent,
+.titlePopupEvent,
+.textAreaPopupEvent,
+.titlePopupEventEdit,
+.timePopupEventEdit,
+.eventEditTypePopup,
+.eventEditRepeatCustomPopup,
+.textAreaPopupEditEvent {
+    font-size: small;
+}
+
+.buttonPopupEvent {
+    width: max-content;
+    margin-right: 5px;
+    display: flex;
+    border-radius: 5px;
+}
+
+    .buttonPopupEvent:hover {
+        cursor: pointer;
+        transition: 0.3s
+    }
+
+.positionHeaderElements {
+    display: flex;
+}
+
+@media(max-width:767px) {
+    .positionHeaderElements {
+        display: block;
+    }
+
+    .headerCalendar .datePicker {
+        display: block;
+    }
+
+    .go {
+        width: max-content
+    }
+}
+
+#listEventPopoup,
+#popupListTrackers,
+.popupListUserTracksMonth,
+.popupSelectDays {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    left: 25%;
+    top: 10%;
+    background-color: var(--White);
+    text-align: center;
+    z-index: 1000;
+    padding: 0 15px 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    max-height: 90%;
+    border: 1px solid var(--A1);
+}
+
+.popupSelectDays {
+    width: 30%;
+    left: 35%;
+}
+
+.popupListUserTracksMonth {
+    overflow: hidden !important;
+    padding: 0 5px 10px !important;
+}
+
+#popupListTrackers,
+.popupListUserTracksMonth,
+.popupSelectDays {
+    min-width: fit-content
+}
+
+@media(max-width:800px) {
+
+    #popupListTrackers,
+    .popupListUserTracksMonth,
+    .popupSelectDays {
+        /* left: 5%; */
+    }
+}
+
+@media(max-width:550px) {
+
+    #popupListTrackers,
+    .popupListUserTracksMonth,
+    .popupSelectDays {
+        /* left: 0; */
+    }
+}
+
+#popupEditDetails,
+#popupEditDetailsPresence {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    left: 34%;
+    top: 10%;
+    background-color: var(--White);
+    text-align: center;
+    z-index: 1000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid var(--A1);
+    min-width: 480px;
+    overflow: auto;
+    max-height: 80%;
+}
+
+@media(max-width:1250px) {
+    #popupEditDetails {
+        /* left: 21%; */
+    }
+}
+
+@media(max-width:1050) {
+
+    #popupEditDetails,
+    #popupEditDetailsPresence {
+        /* left: 13%; */
+    }
+}
+
+@media(max-width:800px) {
+
+    #popupEditDetails,
+    #popupEditDetailsPresence {
+        /* left: 7%; */
+    }
+}
+
+@media(max-width:650px) {
+
+    #popupEditDetails,
+    #popupEditDetailsPresence {
+        /* left: 5%; */
+    }
+}
+
+@media(max-width:600px) {
+
+    #popupEditDetails,
+    #popupEditDetailsPresence {
+        /* left: 0; */
+    }
+}
+
+#popupEditDetails div,
+#popupEditDetailsPresence div {
+    padding: 0 13px;
+}
+
+@media(max-width:800px) {
+    .formContainerEditDetails {
+        padding: 0 !important;
+    }
+}
+
+.tableContainerListEvents {
+    overflow-y: auto;
+    max-height: 500px;
+    border: 1px solid var(--A1);
+}
+
+.headerListEvent {
+    color: var(--White);
+    margin-top: 10px;
+    padding-top: 10px;
+    background: var(--A1);
+    display: flex;
+    padding-bottom: 5px;
+}
+
+    .headerListEvent h3 {
+        font-size: 14px;
+    }
+
+        .headerListEvent h3 i {
+            margin-left: 10px;
+        }
+
+.iconListEventTableHeader {
+    padding: 2px 5px;
+}
+
+@media (max-width: 1680px) {
+    .listEventTable thead tr {
+        font-size: 10px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.btnDiv {
+    display: flex;
+    margin-top: 10px;
+}
+
+.listEventTable tbody tr td button {
+    margin: 5px;
+}
+
+.listEventTable tbody {
+    font-size: small;
+}
+
+.listEventTable thead tr th {
+    font-size: small;
+    border-right: none;
+    border-top: none;
+}
+
+    .listEventTable thead tr th:last-child {
+        border-left: none;
+    }
+
+#listEventPopoup .btnDiv .addEvent {
+    margin-left: 10px;
+}
+
+.listEventTable tbody td {
+    border-color: var(--A1);
+    color: #000;
+}
+
+.navigationButton {
+    padding: 0 10px;
+    margin: 5px;
+    display: flex;
+}
+
+#prevMonth {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-right: 5px;
+}
+
+.listEventTable tbody tr td:first-child {
+    border-right: none;
+    /* Remove border right for the first cell in each row */
+}
+
+.listEventTable tbody tr td:last-child {
+    border-left: none;
+    /* Remove border left for the last cell in each row */
+}
+
+.listEventTable tbody tr:last-child td {
+    border-bottom: none;
+    /* Remove border bottom for the last row in the table */
+}
+
+.monthYearHeader {
+    display: flex;
+    justify-content: center;
+}
+
+textarea {
+    min-height: 54px;
+    /* max-height: 54px; */
+}
+
+
+
+#targetTable td span {
+    width: 100%;
+    height: 100%;
+    padding: 1px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--A1);
+    align-content: space-evenly;
+}
+
+.iconEventDay {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    /* Add transition for smooth opacity change */
+}
+
+td:hover .iconEventDay {
+    opacity: 1;
+    transition: 0.3s
+}
+
+.holiday {
+    color: var(--danger);
+}
+
+.spanTracker {
+    position: absolute;
+    right: 10px;
+    color: var(--danger);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -1px;
+    top: 5%;
+}
+
+.spanTrackerTelework {
+    position: absolute;
+    left: 10px;
+    color: var(--BlueLikeSmoke);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -1px;
+    top: 5%;
+}
+
+.spanTrackerTaskStatus {
+    position: absolute;
+    left: 10px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -1px;
+    top: inherit;
+}
+
+.spanTrackerDeadLine {
+    position: absolute;
+    left: 10px;
+    color: var(--orange);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -1px;
+    bottom: 5%;
+}
+
+.spanTrackerNull {
+    position: absolute;
+    right: 10px;
+    color: var(--danger);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -1px;
+    top: 30%;
+}
+
+.spanTrackerPresence {
+    position: absolute;
+    right: 10px;
+    color: var(--A1);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -1px;
+    top: 55%
+}
+
+.spanTrackerPresenceNull {
+    position: absolute;
+    right: 10px;
+    color: var(--A1);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -3px;
+    top: 80%
+}
+
+.spanTracker,
+.iconEventDay,
+.spanTrackerPresence,
+.spanTrackerNull,
+.spanTrackerPresenceNull {
+    font-size: 15px;
+}
+
+.spanTrackerTelework,
+.spanTrackerDeadLine,
+.spanTrackerTaskStatus {
+    font-size: 20px;
+}
+
+.trackCount {
+    background: transparent;
+    color: var(--danger);
+    padding: 0;
+    border-radius: 0;
+    margin: 4px;
+    position: absolute;
+    top: -5px;
+    font-size: 15px
+}
+
+.trackCountNull {
+    background: transparent;
+    color: var(--danger);
+    padding: 0;
+    border-radius: 0;
+    margin: 4px;
+    position: absolute;
+    top: -5px;
+    font-size: 15px
+}
+
+.trackCountPresence,
+.trackCountPresenceNull {
+    background: transparent;
+    color: var(--A1);
+    padding: 0;
+    border-radius: 0;
+    margin: 4px;
+    position: absolute;
+    top: -5px;
+    font-size: 15px
+}
+
+.show {
+    display: block;
+}
+
+.editTracker,
+.editTrackerPresence {
+    cursor: pointer;
+    color: var(--A1);
+    transition: 0.3s;
+    font-size: 14px;
+    padding: 2px 10px;
+    background-color: var(--White);
+}
+
+.spanTracker,
+.spanTrackerPresence,
+.spanTrackerNull,
+.spanTrackerPresenceNull,
+.spanTrackerTelework,
+.spanTrackerDeadLine,
+.spanTrackerTaskStatus {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-danger,
+.btn-primary {
+    font-family: var(--mainFont);
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.headerEditDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    background-color: var(--A1);
+    padding: 5px;
+    color: var(--White);
+}
+
+    .headerEditDetails h6 {
+        font-size: 14px;
+    }
+
+    .headerEditDetails h3 {
+        font-size: 14px;
+        margin-bottom: 0
+    }
+
+#popupEditDetails .headerEditDetails,
+#popupEditDetailsPresence .headerEditDetails {
+    margin-top: 0;
+    padding: 6px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+#trackReasonSelect {
+    border-color: var(--Gray);
+    font-size: 13px;
+    width: 100%;
+    padding: 2.6px;
+}
+
+.textIconDateTracker {
+    color: var(--White);
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+    .textIconDateTracker i {
+        margin: 4px 10px 0;
+    }
+
+.iconTimeTracker label {
+    color: #000;
+    font-size: 14px;
+    width: 85px;
+    text-align: right;
+}
+
+.formContainerEditDetails .iconTimeTracker label {
+    width: auto;
+}
+
+
+
+.iconTimeTracker span {
+    font-size: 14px;
+}
+
+.formContainerEditDetails {
+    padding: 0px 28px !important;
+    width: 100%;
+    margin: auto;
+}
+
+.iconTimeTracker {
+    color: var(--A1);
+    margin-top: 10px;
+    text-align: right;
+}
+
+    .iconTimeTracker i {
+        color: var(--A1);
+        border: 1px solid var(--Gray);
+        border-left: none;
+        padding: 6.6px;
+    }
+
+#projectSelect,
+#taskTypeSelect,
+#taskCategorySelect,
+#taskSelect {
+    background: var(--WhiteSmoke);
+}
+
+#taskInput {
+    padding: 2.6px;
+}
+
+.timeEnterExitIcon {
+    color: #000 !important;
+}
+
+.listEventTracker th {
+    padding: 7px;
+    background: var(--WhiteSmoke);
+    color: var(--BlueLikeSmoke);
+    font-size: 14px;
+}
+
+.listEventTracker td {
+    font-size: 12px;
+    color: #000;
+    max-width: 100px;
+}
+
+#popupListTrackers,
+.popupListUserTracksMonth,
+.popupSelectDays {
+    overflow: auto;
+    max-height: 80%;
+}
+
+#dateTrackerEditSpan,
+#dateTrackerEditSpanPresence {
+    height: 0;
+    font-family: var(--yekanFont)
+}
+
+#descriptionEditTrack {
+    width: 100%;
+    border-color: var(--Gray);
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.btn-light {
+    border-radius: 5px;
+    border-color: var(--Gray);
+    cursor: pointer;
+    transition: 0.3s;
+    background: var(--WhiteSomke1);
+    padding: 5px;
+    border: 1px solid;
+}
+
+.popupRow input,
+.popupRow select,
+.popupRow textarea {
+    padding: 3px;
+    border: 1px solid var(--GraySmoke);
+}
+
+.titleNewEvent {
+    background: var(--A1);
+    color: var(--White);
+    margin: 0;
+    padding: 7px;
+    border-radius: 7px 7px 0px 0px;
+    text-align: right;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+    .titleNewEvent span {
+        color: var(--White);
+        margin: 0;
+    }
+
+#dateTracker {
+    font-family: var(--yekanFont)
+}
+
+.LabelForm {
+    position: absolute;
+    right: 10px;
+    margin-top: 2px;
+    margin-bottom: 0;
+    margin-right: 5px;
+    font-size: 13px;
+}
+
+.headerListEvent h3 {
+    margin-bottom: 0;
+    margin-top: 3px;
+}
+
+.addEvent {
+    border: none;
+    background: var(--A1);
+    padding: 0;
+}
+
+    .addEvent:hover {
+        background: var(--A1);
+        color: var(--White);
+        transition: 0.3s
+    }
+
+        .addEvent:hover .iconListEventTableHeader {
+            color: var(--A2);
+            transition: 0.3s
+        }
+
+.btn-light i,
+.editTracker i,
+.editTrackerPresence i {
+    font-size: 16px;
+}
+
+form {
+    padding-top: 10px;
+}
+
+.deviderAddEvent {
+    font-weight: 100;
+}
+
+.tooltipTrack,
+.tooltipTrackPresence,
+.tooltipTrackNull,
+.tooltipTrackPresenceNull {
+    position: absolute;
+    color: var(--White);
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1000;
+    right: 35%
+}
+
+.tooltipTrack,
+.tooltipTrackTelework {
+    top: 5%;
+}
+
+.tooltipTrackDeadLine {
+    bottom: 5%;
+}
+
+.tooltipEvent,
+.tooltipTrackTelework,
+.tooltipTrackDeadLine,
+.tooltipTrackTaskStatus {
+    position: absolute;
+    color: var(--White);
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1000;
+    left: 15%
+}
+
+.tooltipEvent {
+    background-color: var(--warning);
+    top: 30px;
+}
+
+.tooltipTrack,
+.tooltipTrackNull {
+    background-color: var(--danger);
+}
+
+.tooltipTrackTelework {
+    background-color: var(--BlueLikeSmoke);
+}
+
+.tooltipTrackDeadLine {
+    background-color: var(--orange);
+}
+
+.tooltipTrackPresence,
+.tooltipTrackPresenceNull {
+    background-color: var(--A1);
+}
+
+.iconEventDay:hover + .tooltipEvent,
+.spanTracker:hover + .tooltipTrack,
+.spanTrackerPresence:hover + .tooltipTrackPresence,
+.spanTrackerNull:hover + .tooltipTrackNull,
+.spanTrackerPresenceNull:hover + .tooltipTrackPresenceNull,
+.spanTrackerTelework:hover + .tooltipTrackTelework,
+.spanTrackerDeadLine:hover + .tooltipTrackDeadLine,
+.spanTrackerTaskStatus:hover + .tooltipTrackTaskStatus {
+    opacity: 1;
+    transition: 0.3s
+}
+
+.textareaEditDetail {
+    padding: 0 25px !important;
+    text-align: right;
+}
+
+    .textareaEditDetail label {
+        font-size: 14px;
+        margin: 0px;
+    }
+
+    .textareaEditDetail div i {
+        color: var(--A1);
+        border: 1px solid var(--Gray);
+        border-left: none;
+        padding: 18px 6.6px;
+    }
+
+#taskInput,
+#projectSelect,
+#descriptionEditTrackPresence,
+#taskTypeSelect,
+#taskCategorySelect,
+#taskSelect {
+    width: 100%;
+    border: 1px solid var(--Gray);
+}
+
+#popupEditDetailsPresence .textareaEditDetail label {
+    margin-left: 20px;
+}
+
+#popupEditDetailsPresence div .iconTimeTracker label {
+    margin: 0;
+}
+
+#popupEditDetailsPresence .textareaEditDetail {
+    margin-top: 20px;
+}
+
+#timeOne,
+#timeTwo,
+.totalTime {
+    width: 100px;
+}
+
+.descriptionListTracks {
+    width: 40%;
+}
+
+.idListTracks {
+    width: 50px;
+}
+
+#popupEditDetailsPresence .btn-primary {
+    padding: 2px 35px;
+    margin: 0 5px
+}
+
+@media(max-width:1200px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        font-size: 13px;
+    }
+
+    .spanTrackerTelework,
+    .spanTrackerDeadLine,
+    .spanTrackerTaskStatus {
+        font-size: 18px;
+    }
+}
+
+@media(max-width:1000px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        font-size: 10px;
+    }
+
+    .spanTrackerTelework,
+    .spanTrackerDeadLine,
+    .spanTrackerTaskStatus {
+        font-size: 13px;
+    }
+}
+
+@media(max-width:800px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        /* font-size: 8px; */
+    }
+
+    .spanTrackerTelework,
+    .spanTrackerDeadLine,
+    .spanTrackerTaskStatus {
+        font-size: 10px;
+    }
+
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull {
+        display: none;
+    }
+}
+
+@media(max-width:550px) {
+    .listUserTrackSpan {
+        font-size: 7px;
+    }
+}
+
+@media(max-height:781px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        font-size: 13px;
+    }
+
+    .spanTrackerTelework,
+    .spanTrackerDeadLine,
+    .spanTrackerTaskStatus {
+        font-size: 18px;
+    }
+}
+
+@media(max-height:690px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        font-size: 10px;
+    }
+
+    .spanTrackerTelework,
+    .spanTrackerDeadLine,
+    .spanTrackerTaskStatus {
+        font-size: 13px;
+    }
+}
+
+@media(max-height:580px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        /* font-size: 8px; */
+    }
+
+    .spanTrackerTelework,
+    .spanTrackerDeadLine,
+    .spanTrackerTaskStatus {
+        font-size: 10px;
+    }
+
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull {
+        display: none;
+    }
+}
+
+@media(max-height:430px) {
+
+    .spanTracker,
+    .spanTrackerNull,
+    .spanTrackerPresence,
+    .spanTrackerPresenceNull,
+    .iconEventDay,
+    .iconClock {
+        font-size: 5px;
+    }
+
+    .trackCount,
+    .trackCountNull,
+    .trackCountPresence,
+    .trackCountPresenceNull {
+        display: none;
+    }
+}
+
+.radiuButton label,
+.radiuButton input {
+    cursor: pointer
+}
+
+.headerListUserTracksMonth {
+    background-color: var(--A1);
+    color: var(--White);
+    margin-top: 10px;
+    padding: 5px;
+}
+
+    .headerListUserTracksMonth p {
+        margin: 0;
+    }
+
+.scrollable-popup {
+    max-height: 50%;
+    overflow-y: auto;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--Gray);
+}
+
+.radiuButton {
+    padding: 0 20px !important;
+}
+
+.green {
+    color: var(--green);
+}
+
+.danger {
+    color: var(--danger)
+}
+
+.listTracksIconTitle {
+    font-size: xx-small
+}
+
+.gridRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr;
+    padding: 10px 0;
+    align-items: center;
+}
+
+    .gridRow span {
+        padding: 0 10px;
+    }
+
+.locked-day {
+    background: var(--Gray) !important;
+    color: var(--White) !important;
+}
+
+.selectedDay {
+    background-color: var(--A4) !important;
+}
+
+.OffDays {
+    color: #b9b9b9 !important;
+    background: #f7f7f7 !important;
+}
+
+#targetTable tbody tr td:hover {
+    transition: 0.3s;
+    cursor: pointer;
+    opacity: 0.7;
+    z-index: 1400;
+}
+
+.fieldFormSelectDay {
+    color: var(--A1);
+    display: flex;
+    margin: 30px 10px 10px;
+    align-items: center
+}
+
+    .fieldFormSelectDay span {
+        margin: 0 10px;
+        width: 120px;
+        display: flex;
+    }
+
+.selectDayInput {
+    border: 1px solid var(--GraySmoke);
+    text-align: center;
+    font-family: var(--yekanFont);
+    width: 140px;
+    border-radius: 3px;
+    height: 28px;
+}
+
+.m-1 {
+    margin: 3px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.borderBottom {
+    border-bottom: 1px solid var(--Gray);
+}
+
+.headerTable {
+    text-align: center;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--A1);
+    color: var(--White);
+    padding: 3px 16px;
+    align-items: center;
+    border-radius: 3px;
+}
+
+#month-name,
+#year-number {
+    font-size: 18px;
+}
+
+#year-number,
+#currentYearTable {
+    font-family: var(--yekanFont);
+}
+
+.navigateSpan {
+    border: 1px solid var(--White);
+    border-radius: 5px;
+    display: flex;
+    font-size: 18px;
+    padding: 1px 8px;
+}
+
+    .navigateSpan:hover {
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 10px;
+    }
+
+.subject-box {
+    padding: 16px;
+    margin: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between
+}
+
+    .subject-box:not(:last-child) {
+        border-bottom: 1px solid #dcdcdc;
+    }
+
+    .subject-box:hover {
+        background-color: #e0e0e0;
+        transition: 0.3s;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .subject-box span {
+        color: var(--A1);
+    }
+
+.listPerformance {
+    border-radius: 10px;
+    box-shadow: 0px 5px 12px 1px #dcdcdc;
+    margin: 10px;
+}
+
+.broderNone {
+    border: none !important;
+}
+
+.popupCalendar {
+    position: fixed;
+    background-color: var(--White);
+    border: 1px solid var(--Gray);
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1500;
+    top: 10%;
+    left: 4%;
+    margin: 70px;
+    border-radius: 3px;
+}
+
+@media(max-width:700px) {
+    .popupCalendar {
+        margin: 25px;
+    }
+}
+
+.overlayTable, .overlayErrorPopup {
+    background: #0000006b;
+    z-index: 1050;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.overlayErrorPopup {
+    z-index: 3000;
+}
+
+.headerCalendarTable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--A1);
+    color: var(--White);
+    border-radius: 3px;
+    height: 35px;
+    position: relative;
+}
+
+.WidthMaxContent {
+    font-family: var(--mainFont);
+    width: max-content;
+    font-size: 15px;
+}
+
+.closePopupCalendar {
+    position: absolute;
+    left: 1%;
+    cursor: pointer;
+}
+
+    .closePopupCalendar i {
+        margin: 0 !important;
+    }
+
+
+.spanIconMizKar {
+    background: var(--A1);
+    color: var(--White);
+    border-radius: 30px;
+    display: flex;
+    margin: 0 7px;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+}
+
+.weekdays-row th {
+    height: max-content !important;
+}
+
+.iconCounterFieldMizKar {
+    position: absolute;
+    color: var(--A1);
+    left: 40px;
+}
+
+.itemDivDetail:hover {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.gadget-detail {
+    height: auto;
+    overflow: hidden;
+    /* Helps with smooth slide animations */
+}
+
+    .gadget-detail li {
+        padding: 10px;
+    }
+
+        .gadget-detail li:hover {
+            cursor: pointer;
+            background-color: var(--Gray);
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+
+.itemMizkarData {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .itemMizkarData span {
+        color: var(--A1);
+    }
+
+.performanceDay {
+    background-color: var(--A3)
+}
+
+.popupCalendar #targetTable span {
+    color: var(--A1);
+    border-color: transparent;
+}
+
+.performanceValue {
+    position: absolute;
+    left: 10%;
+    font-size: small;
+    width: max-content !important;
+    height: max-content !important;
+}
+
+
+
+.gadgetLabel {
+    position: absolute;
+    right: 1%;
+    font-size: 14px;
+    color: #e7e7e7;
+}
+
+.borderNone {
+    border: none !important;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    transition: 0.3s;
+    background-clip: border-box;
+    border: 1px solid var(--Gray);
+    border-radius: 15px !important;
+    margin: 10px;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.cardDetail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardNumber {
+    direction: ltr;
+}
+
+.Val000,
+.Val002 {
+    color: green;
+}
+
+.Val011,
+.Val012,
+.Val013 {
+    color: #0D92F4;
+}
+
+.Val022 {
+    color: red;
+}
+
+.Val001 {
+    border: 1px solid green;
+    padding: 0 5px;
+    color: green !important;
+}
+
+.Val003 {
+    border: 1px solid green;
+    padding: 0 5px;
+    color: green !important;
+}
+
+.Val004 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: orange !important;
+}
+
+.Val005 {
+    border: 1px solid green;
+    padding: 0 5px;
+    color: green !important;
+}
+
+.Val006 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: orange !important;
+}
+
+.Val007 {
+    border: 1px solid green;
+    padding: 0 5px;
+    color: green !important;
+}
+
+.Val008 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: orange !important;
+}
+
+.Val009 {
+    border: 1px solid green;
+    padding: 0 5px;
+    color: green !important;
+}
+
+.Val010 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: orange !important;
+}
+
+.Val014 {
+    border: 1px solid #0D92F4;
+    padding: 0 5px;
+    color: #0D92F4 !important;
+}
+
+.Val015 {
+    border: 1px solid #0D92F4;
+    padding: 0 5px;
+    color: #0D92F4 !important;
+}
+
+.Val016 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: red !important;
+}
+
+.Val017 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: red !important;
+}
+
+.Val018 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: red !important;
+}
+
+.Val019 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: red !important;
+}
+
+.Val020 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: red !important;
+}
+
+.Val021 {
+    border: 1px solid red;
+    padding: 0 5px;
+    color: red !important;
+}
+
+.togglePerformance {
+    font-size: 20px;
+}
+
+    .togglePerformance:hover {
+        cursor: pointer;
+    }
+
+
+.box-header {
+    padding: 17px 10px !important
+}
+
+#popupFormUserTrack,
+#userTracksPopup {
+    display: none;
+    position: fixed;
+    background-color: #fff;
+    border: 1px solid var(--Gray);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    top: 20%;
+    left: 30%;
+    z-index: 1000;
+    padding: 10px;
+    overflow: auto;
+    max-height: 65%;
+}
+
+#userTracksPopup {
+    z-index: 1501;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    left: 0;
+    margin: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 3px;
+}
+
+.formUserTrackHeader,
+.headerUserTracksPopup,
+.headerPopupNewTrack,
+.headerPopupOverTime,
+.userTrackHeaderPopup {
+    background-color: var(--A1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0px 10px;
+    height: 35px;
+}
+
+.userTrackHeaderPopup {
+    margin: 10px;
+    margin-left: 20px !important;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    position: fixed;
+}
+
+
+.headerUserTracksPopup {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    position: fixed;
+    margin-left: 20px;
+}
+
+.dateFormUserTrackHeader,
+.datePopupUserTracks,
+.datePopupNewTrack,
+.datePopupOverTime {
+    font-size: 14px;
+}
+
+.day-number {
+    font-family: var(--yekanFont)
+}
+
+.closeformUserTrack,
+.closeUserTracksPopup,
+.closeNewEventPopup,
+.closeOverTimePopup {
+    cursor: pointer;
+}
+
+.borderItemValue {
+    border: 1px solid !important;
+    border-radius: 20px !important;
+    background: #fff !important;
+}
+
+.bodyFormUserTrack table {
+    width: 100%;
+}
+
+    .bodyFormUserTrack table th,
+    .bodyFormUserTrack table td {
+        border: 1px solid #cccccc4d;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .bodyFormUserTrack table tbody td:not(:last-child) {
+        font-family: var(--yekanFont);
+    }
+
+.bodyFormUserTrack select {
+    border-color: #cccccc4d;
+    font-size: 12px;
+    width: 80%;
+}
+
+.saveUserTrackPerformance {
+    margin: 10px;
+    background-color: var(--A1);
+    color: #fff;
+    padding: 5px 15px;
+    border-color: #fff;
+    border-radius: 10px;
+}
+
+.overlayPopupFormUserTrack {
+    position: fixed;
+}
+
+
+.trackRecords {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    align-items: center;
+}
+
+.UserTrack {
+    font-family: var(--yekanFont);
+    position: absolute;
+    margin-top: -30px;
+    margin-right: -6px;
+    font-size: 18px;
+    z-index: 2
+}
+
+.enterUserTrack {
+    color: green;
+}
+
+.enterProcessUserTrack {
+    background: green;
+}
+
+.exitUserTrack, .deleteUserTrack {
+    color: red;
+}
+
+.blueUserTrack {
+    color: deepskyblue;
+}
+
+.editUserTrack {
+    color: blue;
+}
+
+.orangeUserTrack {
+    color: darkorange
+}
+
+.exitProcessUserTrack {
+    background: red;
+}
+
+.blueProcessUserTrack {
+    background: deepskyblue;
+}
+
+.orangeProcessUserTrack {
+    background: darkorange;
+}
+
+.processUserTrack {
+    height: 4px;
+    position: absolute;
+    margin-top: -13px;
+}
+
+.editTrackSpan {
+    background-color: var(--OffDays);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.emptyRecords {
+    text-align: center;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+.timeline-container {
+    width: 1800px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.timelineUserTrack {
+    position: relative;
+    width: 1700px;
+    height: 2px;
+    background-color: black;
+    cursor: pointer;
+}
+
+.hour {
+    position: absolute;
+    top: 5px;
+    font-size: 12px;
+    transform: translateX(-50%);
+    font-family: var(--yekanFont);
+    cursor: default;
+    margin-top: -2px;
+}
+
+    .hour::after {
+        content: "";
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        width: 1px;
+        height: 10px;
+        background-color: black;
+    }
+
+
+.userTrackHover {
+    position: absolute;
+    border: 1px solid var(--OffDays);
+    padding: 5px;
+    top: 5px;
+    border-radius: 5px;
+    background: #fff;
+    display: grid;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    visibility: hidden;
+    width: max-content;
+}
+
+.spanPopupTrackers {
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 3px 8px 0px;
+    display: none;
+}
+
+.divSpanPopupTrackers {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    margin-top: -35px;
+    margin-bottom: 12px;
+    width: max-content;
+    height: 35px;
+}
+
+.divshowFormTrackExitOfWork {
+    margin-top: -53px;
+    margin-bottom: 12px;
+    width: max-content;
+    height: 41px;
+}
+
+.divshowFormTrackIncompleteData {
+    margin-top: -75px;
+    margin-bottom: 12px;
+    width: max-content;
+    position:absolute
+
+}
+
+    .divshowFormTrackExitOfWork .spanPopupTrackers {
+        padding: 5px 8px 2px;
+    }
+
+.divshowFormTrackIncompleteData .spanPopupTrackers {
+    padding: 5px 8px 2px;
+    margin: 20px 6px;
+    background:#fff;
+}
+
+@media(max-width:1919px) {
+    .divSpanPopupTrackers {
+        padding-right: 18px;
+    }
+}
+
+@media(max-width:1850px) {
+    .divSpanPopupTrackers {
+        padding-right: 30px;
+    }
+}
+
+@media(max-width:1750px) {
+    .divSpanPopupTrackers {
+        padding-right: 40px;
+    }
+}
+
+.overlayNewTrackForm, .overlayOverTimeForm {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1502;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    border-radius: 3px;
+}
+
+.popupEnterNewTrack,
+.popupOverTime {
+    z-index: 1503;
+    position: fixed;
+    padding: 10px !important;
+    background-color: #fff;
+    border: 1px solid var(--Gray);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media(max-width:700px) {
+    .popupEnterNewTrack, .popupOverTime {
+        width: 90%;
+    }
+}
+
+.show-both-tracks .spanPopupTrackers {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.bodyNewTrackForm,
+.bodyOverTimeForm {
+    padding: 16px 10px;
+    border: 1px solid #cccccc4d;
+    overflow: auto;
+    margin: 5px 0px 0px 0px;
+    border-radius: 3px
+}
+
+
+
+    .bodyNewTrackForm textarea,
+    .bodyOverTimeForm textarea {
+        border-radius: 5px;
+        border: 1px solid #cccccc4d;
+        min-height: 200px;
+        resize: vertical;
+    }
+
+    .bodyNewTrackForm input {
+        border-radius: 5px;
+        border: 1px solid #cccccc4d;
+        padding: 5px !important;
+        margin-bottom: 12px;
+    }
+
+.hourstimeInput24 {
+    text-align: left
+}
+
+.divButtonSubmitUserTrack {
+    margin-top: 10px !important;
+    justify-content: right !important;
+}
+
+@-moz-document url-prefix() {
+    .divButtonSubmitUserTrack {
+        display: flex;
+    }
+}
+
+.bodyNewTrackForm select {
+    border-radius: 5px;
+    border: 1px solid #cccccc4d;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 34px;
+}
+
+.rightNavigate {
+    padding: 1px 8px;
+}
+
+    .rightNavigate i {
+        font-size: 18px;
+        margin: 0;
+    }
+
+#tooltipPerformanceValue {
+    position: absolute;
+    background: #333 !important;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0;
+    transition: 0.3s;
+    margin-top: -50px;
+    width: max-content;
+    margin-right: -35px;
+    display: flex;
+    align-items: center
+}
+
+    #tooltipPerformanceValue p {
+        margin: 3px !important;
+    }
+
+.performanceValue:hover #tooltipPerformanceValue {
+    opacity: 1;
+}
+
+.issueGadgetIcon {
+    color: #dc3545;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.issueDiv {
+    position: absolute;
+    right: 0px;
+    width: max-content;
+    height: max-content;
+    cursor: pointer;
+    background: transparent !important;
+    margin-top: -50px;
+    padding: 10px;
+    font-size: 10px;
+    top: 40px;
+}
+
+    .issueDiv i {
+        font-size: 20px;
+    }
+
+.issueEnterExit,
+.issueAbsence,
+.issueExitOfWork {
+    width: max-content !important;
+    height: max-content !important;
+    background: transparent !important;
+    font-size: 24px;
+    padding: 10px !important;
+}
+
+.issueEnterExit,
+.orange {
+    color: #ff8c00 !important;
+}
+
+.issueAbsence,
+.issueExitOfWork,
+.red {
+    color: #dc3545 !important;
+}
+
+.issueSubTitle {
+    display: block;
+}
+
+#formOverTime {
+    border: 1px solid #cccccc4d;
+    border-radius: 3px;
+    margin-bottom: 6px;
+}
+
+    #formOverTime input {
+        margin: 10px;
+        border: 1px solid #cccccc4d;
+        padding: 5px;
+        border-radius: 5px;
+        width: 100px
+    }
+
+.checkboxOverTime {
+    margin: 0 !important;
+}
+
+
+.orangeBorder {
+    border: 1px solid orange !important;
+}
+
+.greenBorder {
+    border-color: green !important;
+    border-width: 2px !important;
+}
+
+.redBorder {
+    border-color: red !important;
+    border-width: 2px !important;
+}
+
+.timeline-help-container {
+    margin: 0 70px;
+    padding: 10px;
+    width: max-content;
+}
+
+.timeLineHelpItems {
+    display: flex;
+}
+
+    .timeLineHelpItems div {
+        margin-left: 30px;
+    }
+
+    .timeLineHelpItems span {
+        margin: 5px;
+        font-size: 12px;
+    }
+
+.deepskyblue {
+    color: deepskyblue;
+}
+
+.green {
+    color: green;
+}
+
+.timeLineHelpTitle {
+    font-weight: bold;
+    font-size: medium;
+    margin: 10px;
+}
+
+.circleStyleAbsence {
+    border: 2px solid green;
+    border-radius: 100px;
+    padding: 0 2px;
+}
+
+.circleStyleRejected {
+    border: 2px solid red;
+    border-radius: 100px;
+    padding: 0 2px;
+}
+
+.headerBtn :hover {
+    background: var(--A1);
+    border: 1px solid #fff;
+}
+
+.headerBtn {
+    position: absolute;
+    left: 5%;
+    border: 1px solid #ffffff73;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 3px;
+    align-items: center;
+    justify-content: center;
+    background: var(--A2);
+    font-size: 14px;
+}
+
+@media(max-width:1700px) {
+    .issueSubTitle {
+        display: none;
+    }
+
+    .issueDiv {
+        top: 50px;
+    }
+}
+
+@media(max-width:1400px) {
+
+    #targetTable td span,
+    .issueEnterExit,
+    .issueAbsence,
+    .issueExitOfWork {
+        padding: 0 !important;
+    }
+
+    .issueDiv {
+        padding: 0 !important;
+        top: 60px;
+        right: 5px;
+    }
+}
+
+@media(max-width:800px) {
+    .issueDiv i {
+        font-size: 13px;
+    }
+
+    .issueDiv {
+        top: 43px;
+    }
+}
+
+@media(max-width:600px) {
+
+    #targetTable th,
+    #targetTable td {
+        font-size: 12px;
+    }
+
+    .performanceValue,
+    .issueDiv i {
+        font-size: 12px;
+    }
+
+    .WidthMaxContent {
+        font-size: 11px;
+    }
+
+
+    .headerBtn,
+    .gadgetLabel,
+    .WidthMaxContent {
+        font-size: 10px;
+    }
+}
+
+@media(max-width:1250px) {
+    .datePopupUserTracks,
+    .titlePopupUserTracks,
+    .datePopupNewTrack, .datePopupOverTime, .titlePopupOverTime {
+        font-size: 11px;
+    }
+
+    .datePopupModal {
+        font-size: 8px;
+    }
+}
+
+@media(max-width:1000px) {
+
+    .performanceValue {
+        top: 1px;
+    }
+}
+
+@media(max-width:550px) {
+    .userTrackHeaderPopup {
+        justify-content: start;
+    }
+
+        .userTrackHeaderPopup .closeUserTracksPopup {
+            position: absolute;
+            left: 5px;
+        }
+
+        .userTrackHeaderPopup .datePopupUserTracks {
+            margin-right: 10px;
+        }
+}
+
+#timeTrackEvent:disabled,
+#timeExitTrackEvent:disabled,
+#formOverTime input:disabled,
+#selectTrackTypes:disabled,
+#descriptionUserTrackForm:disabled,
+#descriptionOverTime:disabled,
+#workLocationInput:disabled, #selectWorkCity:disabled {
+    background: #e1e1e1;
+}
+
+
+@media(max-width:520px) {
+    .selectCellSpan {
+        font-size: 8px;
+    }
+}
+
+@media(max-width:320px) {
+
+    #targetTable th,
+    #targetTable td {
+        font-size: 6px;
+    }
+
+    .performanceValue {
+        font-size: 4px;
+    }
+
+    .WidthMaxContent,
+    .gadgetLabel {
+        font-size: 8px;
+    }
+}
+
+@media(max-width:375px) {
+
+    #targetTable th,
+    #targetTable td {
+        font-size: 6px;
+    }
+
+    .performanceValue {
+        font-size: 6px;
+    }
+
+    .WidthMaxContent,
+    .gadgetLabel {
+        font-size: 10px;
+    }
+}
+
+
+.infoAbsenceMessage {
+    font-size: 13px;
+    text-align: right;
+    border: 1px solid;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 10px;
+    line-height: 25px;
+    border-color: #ff990061;
+}
+
+@media(max-width:1000px) {
+    #updatePerformance {
+        font-size: 8px;
+    }
+}
+
+.poplbl {
+    font-weight: 500 !important;
+}
+
+
+.btn_close {
+    margin: 0px 5px;
+    width: 70px;
+    color: var(--A1)
+}
+
+.btn_submit {
+    min-width: 70px;
+    background-color: var(--A2);
+    border-color: var(--A1);
+    color: white !important;
+}
+
+input[type="time"] {
+    height: 34px !important;
+    border-radius: 3px !important;
+}
+
+.swal-text {
+    color: #ff8c00 !important;
+}
+
+.RedirectLink {
+    border-radius: 3px;
+    border: 0px;
+    background-color: transparent;
+    color: brown;
+    font-size: 11px;
+}
+
+.swal-button--cance {
+    min-width: fit-content !important;
+}
+
+@media (max-width:570px) {
+    .titlePopupNewTrack {
+        font-size: x-small;
+    }
+}
+
+@media (max-width:995px) {
+    #timeTrackEvent, #timeExitTrackEvent, #selectTrackTypes, #descriptionUserTrackForm {
+        width: -webkit-fill-available;
+        width: -moz-available;
+    }
+}
+
+@media(max-width:1450px) {
+    .poplbl, #timeTrackEvent, #timeExitTrackEvent, #selectTrackTypes, #descriptionUserTrackForm {
+        width: -webkit-fill-available;
+        width: -moz-available;
+    }
+
+    #descriptionUserTrackForm, #descriptionOverTime {
+        min-height: 150px;
+    }
+}
+
+@media(max-width:1850px) {
+    .overTimeField input, #descriptionOverTime {
+        margin-top: 10px !important;
+    }
+}
+
+.holidayDate {
+    background: #c5c5c5a1 !important;
+    color: var(--BlueLikeSmoke) !important;
+}
+
+#updatePerformanceMonth, #updatePerformance {
+    display: none;
+}
+
+    #updatePerformance i:hover{
+        border:none;
+    }
+
+    .timeWorkHourTimeLine {
+        font-weight: bold;
+        color: purple;
+        font-size: large;
+    }
+
+#workLocationInput {
+    margin-bottom: 10px;
+    padding: 5px !important;
+}
+
+.errorPopup {
+    position: fixed;
+    top: 30%;
+    margin: 0 35%;
+    padding: 45px;
+    border-radius: 10px;
+    z-index: 3000;
+    background-color: #fff;
+    font-family: var(--mainFont);
+    text-align: center;
+    padding-bottom: 10px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+    .errorPopup span {
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .errorPopup p {
+        margin-top: 20px;
+    }
+
+.iconPageError {
+    background-color: #ef513a;
+    width: 100px;
+    height: 100px;
+    place-self: center;
+    align-content: center;
+    margin-top: -95px;
+    margin-bottom: 20px;
+    border-radius: 100px;
+    color: #fff;
+    font-size: 85px;
+}
+
+
+.btnClosePopupDanger {
+    border-radius: 5px;
+    background-color: #ef513a;
+    color: #fff;
+    padding: 5px 50px;
+    border-color: transparent;
+    margin-top: 30px;
+}
+
+.delay-container {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+}
+
+@media(max-width:1200px) {
+    .delay-container {
+        top: 0;
+    }
+}
+
+.delay-span {
+    position: static !important;
+}
+
+@media(max-width:650px) {
+    .delay-span {
+        font-size: 10px
+    }
+}
+
+@media(max-width:550px) {
+    .delay-container {
+        padding: 0 !important;
+    }
+
+    .delay-span {
+        font-size: 8px
+    }
+}

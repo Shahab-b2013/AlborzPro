@@ -1,0 +1,35 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.0.0.9*/ 
+.timeline-title {
+    font-family: IRANSansWeb;
+}
+
+.timeline-subtitle {
+    font-family: IRANSansWeb;
+}
+
+.timeline-text {
+    border-top: 1px solid #e7eaf1;
+    border-bottom: 1px solid #e7eaf1;
+}
+
+.timeline-inner-text {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.timeline-status {
+    font-family: IRANSansWeb;
+}
+
+.timeline-box {
+    background-color: #e5ffff;/*@MainColor-A4*/
+}
+
+.timeline {
+    font-family: IRANSansWeb;
+}
+
+.direct-chat-timestamp{
+    font-size:14px!important;
+}

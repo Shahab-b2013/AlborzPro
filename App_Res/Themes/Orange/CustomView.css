@@ -1,0 +1,49 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2022 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 3.2.0.0*/
+
+.info-box-div {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+    font-family: 'IRANSansWeb';
+}
+
+.info-box-number {
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--A1);/*@MainColor-A1*/
+    font-family: 'IRANSansWeb';
+}
+
+.info-box-text {
+    font-size: 20px;
+    color: #73879c;/*@MainColor-B3*/
+}
+
+.info-box-icon {
+     background-color: #8AFF8A;/*@MainColor-A3*/
+}
+
+.info-box-text-muted {
+    color: #99a5b4;/*@MainColor-B4*/
+}
+
+.gadget-box-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--A1);/*@MainColor-A1*/
+    font-family: 'IRANSansWeb';
+}
+
+.gadget-box-text {
+    font-size: 16px!important;
+    color: #73879c!important;/*@MainColor-B3*/
+}
+
+.gadget-box-splitter {
+    border: 1px solid #e7e7e7;/*@LightColor-L4*/
+}
+
+.tab-box-text {
+    font-size: 15px!important;
+    color: #73879c!important;/*@MainColor-B3*/
+}

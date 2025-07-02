@@ -1,0 +1,113 @@
+{
+  "ReportID": "4000002",
+  "ModuleID": "0",
+  "DatasetID": "102",
+  "DatasetName": "TestEnt",
+  "SelectClause": "SELECT Sls_Products.Label, Sls_FactorProducts.NumberOfUnit, Sls_FactorProducts.PriceOfUnit, Sls_FactorProducts.ProductID, Sls_FactorProducts.Importance FROM  Sls_FactorProducts LEFT OUTER JOIN Sls_Products     ON Sls_FactorProducts.ProductID = Sls_Products.ProductID  ",
+  "Columns": [
+    {
+      "ID": 102001,
+      "Name": "Product-Label",
+      "Label": "کالا-عنوان",
+      "Type": "String",
+      "TextExpression": "Sls_Products.Label",
+      "SortType": "unsorted",
+      "SortOrder": "1",
+      "GroupBy": "ExpressionGroupBy",
+      "EnumTypeID": "",
+      "RefEntityID": "0",
+      "EntityAttributeID": "10020101"
+    },
+    {
+      "ID": 102002,
+      "Name": "FactorProduct-NumberOfUnit",
+      "Label": "اقلام فاکتور-تعداد کالا",
+      "Type": "Number",
+      "TextExpression": "Sls_FactorProducts.NumberOfUnit",
+      "SortType": "unsorted",
+      "SortOrder": "1",
+      "GroupBy": "ExpressionGroupBy",
+      "EnumTypeID": "",
+      "RefEntityID": "0",
+      "EntityAttributeID": "10020001"
+    },
+    {
+      "ID": 102003,
+      "Name": "FactorProduct-PriceOfUnit",
+      "Label": "اقلام فاکتور-قیمت واحد",
+      "Type": "Number",
+      "TextExpression": "Sls_FactorProducts.PriceOfUnit",
+      "SortType": "unsorted",
+      "SortOrder": "1",
+      "GroupBy": "ExpressionGroupBy",
+      "EnumTypeID": "",
+      "RefEntityID": "0",
+      "EntityAttributeID": "10020002"
+    },
+    {
+      "ID": 102004,
+      "Name": "FactorProduct-ProductID",
+      "Label": "اقلام فاکتور-شناسه کالا",
+      "Type": "String",
+      "TextExpression": "Sls_FactorProducts.ProductID",
+      "SortType": "unsorted",
+      "SortOrder": "1",
+      "GroupBy": "ExpressionGroupBy",
+      "EnumTypeID": "",
+      "RefEntityID": "100201",
+      "EntityAttributeID": "10020003"
+    },
+    {
+      "ID": 102005,
+      "Name": "FactorProduct-Importance",
+      "Label": "اقلام فاکتور-اهمیت کالا",
+      "Type": "String",
+      "TextExpression": "Sls_FactorProducts.Importance",
+      "SortType": "unsorted",
+      "SortOrder": "1",
+      "GroupBy": "ExpressionGroupBy",
+      "EnumTypeID": "1",
+      "RefEntityID": "0",
+      "EntityAttributeID": "10020004"
+    }
+  ],
+  "WhereClause": "",
+  "Filter": {
+    "condition": "AND",
+    "rules": [],
+    "valid": true
+  },
+  "AccessRoles": [],
+  "AccessGroups": [],
+  "Label": "asd",
+  "Header": "@@Header",
+  "Footer": " تهیه شده درراهکار فردوس",
+  "Description": "",
+  "GroupingLevel": 0,
+  "requestToken": "591896886",
+  "Schedule": [
+    {
+      "SchedulesEnable": false,
+      "Occurs": "هفتگی",
+      "Month": null,
+      "Week": 1,
+      "DayMonth": null,
+      "Daily": null,
+      "Saturday": false,
+      "Sunday": false,
+      "Monday": false,
+      "Tuesday": false,
+      "Wednesday": false,
+      "Thursday": false,
+      "Friday": false,
+      "SendTime": "",
+      "ExportType": "MicrosoftExcelXML",
+      "SendToAllUsers": false,
+      "SaveReport": false,
+      "ReportPath": "",
+      "SendReport": false,
+      "SendEmails": ""
+    }
+  ],
+  "CompleteQuery": "SELECT Sls_Products.Label, Sls_FactorProducts.NumberOfUnit, Sls_FactorProducts.PriceOfUnit, Sls_FactorProducts.ProductID, Sls_FactorProducts.Importance FROM  Sls_FactorProducts LEFT OUTER JOIN Sls_Products     ON Sls_FactorProducts.ProductID = Sls_Products.ProductID  "
+}

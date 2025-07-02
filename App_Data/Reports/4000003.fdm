@@ -1,0 +1,61 @@
+{
+  "ReportID": "4000003",
+  "ModuleID": "0",
+  "DatasetID": "102",
+  "DatasetName": "TestEnt",
+  "SelectClause": "SELECT Sls_FactorProducts.NumberOfUnit FROM Sls_FactorProducts ",
+  "Columns": [
+    {
+      "ID": 102002,
+      "Name": "FactorProduct-NumberOfUnit",
+      "Label": "اقلام فاکتور-تعداد کالا",
+      "Type": "Number",
+      "TextExpression": "Sls_FactorProducts.NumberOfUnit",
+      "SortType": "unsorted",
+      "SortOrder": "1",
+      "GroupBy": "ExpressionGroupBy",
+      "EnumTypeID": "",
+      "RefEntityID": "0",
+      "EntityAttributeID": "10020001"
+    }
+  ],
+  "WhereClause": "",
+  "Filter": {
+    "condition": "AND",
+    "rules": [],
+    "valid": true
+  },
+  "AccessRoles": [],
+  "AccessGroups": [],
+  "Label": "asd",
+  "Header": "@@Header",
+  "Footer": " تهیه شده درراهکار فردوس",
+  "Description": "",
+  "GroupingLevel": 0,
+  "requestToken": "591816739",
+  "Schedule": [
+    {
+      "SchedulesEnable": false,
+      "Occurs": "هفتگی",
+      "Month": null,
+      "Week": 1,
+      "DayMonth": null,
+      "Daily": null,
+      "Saturday": false,
+      "Sunday": false,
+      "Monday": false,
+      "Tuesday": false,
+      "Wednesday": false,
+      "Thursday": false,
+      "Friday": false,
+      "SendTime": "",
+      "ExportType": "MicrosoftExcelXML",
+      "SendToAllUsers": false,
+      "SaveReport": false,
+      "ReportPath": "",
+      "SendReport": false,
+      "SendEmails": ""
+    }
+  ],
+  "CompleteQuery": "SELECT Sls_FactorProducts.NumberOfUnit FROM Sls_FactorProducts "
+}

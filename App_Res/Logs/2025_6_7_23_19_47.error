@@ -1,0 +1,6 @@
+Error Datetime:6/7/2025 11:19:47 PM
+Error Type:10060
+Error Message:Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+Error Detail:insert into Sys_ErrorLogs(ErrorID, Message, Detail, ObjectIDs, ActivityID, UserID, CreateDate) values('10060', N'Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.&#x5B;&#x5D;', N'SELECT N&#x27;&#x27;All&#x27;&#x27; AS Label&sbquo;COUNT&#40;&#x2A;&#x29; AS Total FROM Sys_Pex_Tasks WHERE &#40;TaskStatusID IN &#40;1&sbquo; 2&sbquo; 4&#x29;&#x29; AND AssigneeUID &#x3D; 9
+          UNION ALL
+          SELECT N&#x27;&#x27;Activity_254_120&#x27;&#x27; &sbquo; COUNT&#40;&#x2A;&#x29; AS Total FROM Sys_Pex_Tasks WHERE &#40;Sys_Pex_Tasks._IsDeleted &#x3D; 0&#x29; AND &#40;TaskStatusID IN &#40;1&sbquo; 2&sbquo; 4&#x29;&#x29; AND ActivityID &#x3D; 6200254 AND  dbo.HasAccess3&#40;AssigneeUID&sbquo; AssigneeTID&sbquo; AssigneePID&sbquo; 9&#x29; &#x3D; 1 ORDER BY  1 Asc&#x3B;', '0', 1225450, 9, getdate());select scope_identity()

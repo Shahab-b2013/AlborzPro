@@ -1,0 +1,23 @@
+﻿{
+  "ReportID": "@@ReportID",
+  "ModuleID": "@@ModuleID",
+  "DatasetID": "@@DatasetID",
+  "DatasetName": "@@DatasetName",
+  "SelectClause": null,
+  "Columns": [],
+  "WhereClause": null,
+  "Filter": [],
+  "AccessRoles": [],
+  "AccessGroups": [],
+  "Name": "",
+  "Label": "@@Label",
+  "Header": "@@Label",
+  "Footer": "@@Footer",
+  "Description": "",
+  "GroupingLevel": 0,
+  "RefRoles": [@@RefRoles],
+  "RefGroups": [@@RefGroups],
+  "RefColumns": [@@RefColumns],
+  "RefDatasets": [@@RefDatasets],
+  "requestToken": "@@requestToken"
+}

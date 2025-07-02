@@ -1,0 +1,137 @@
+/* Code File(Amnpardaz Software Co. Copyright 2024 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 4.2.0.0*/
+
+.section {
+    background-color: #fdfdfd !important;
+    border: 1px solid #dcdcdca1 !important;
+    box-shadow: 0px 5px 12px 1px #dcdcdc;
+    padding: 10px 20px 20px !important;
+}
+
+.nav-stacked li {
+    flex: 1 1 auto;
+    padding: 1.25rem 1rem;
+    background: var(--White);
+    transition: 0.3s;
+    box-shadow: -3px 3px 12px 1px #dcdcdc;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    transition: 0.3s;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: 15px !important;
+}
+
+.nav-stacked li:hover a {
+    background: #fff;
+}
+
+.nav-stacked li:hover {
+    border-radius: 30px !important;
+    cursor: pointer;
+}
+
+.box {
+    box-shadow: none;
+}
+
+/* .nav-stacked li a img {
+    position: absolute;
+    left: 0px;
+    top: 4px;
+} */
+
+.box .nav-stacked>li {
+    margin: 5px 5px 15px !important;
+}
+
+.itemMizkarData>span:last-child {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    right: inherit;
+}
+
+.itemMizkarData i {
+    font-size: 20px;
+}
+
+#page-row-100100000 a {
+    padding-right: 50px !important;
+}
+
+.btn-box-tool i {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.gadgetTitle i {
+    color: #6a7a8c;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+#box-header-100100103 .fa-bars::before {
+    content: "\f067";
+    /* Unicode for fa-plus */
+}
+
+#box-header-100100104 .fa-bars::before {
+    content: "\f00b";
+    /* Unicode for fa-th-list */
+}
+
+.section .section {
+    box-shadow: none;
+    border: none !important;
+    margin: 0px -5px 0px -5px !important;
+}
+
+.box-header>.box-tools {
+    top: 5px;
+}
+
+
+.col-md-2 .row-centered .col-centered .section .box-solid .box-body .nav-stacked li a img {
+    width: 25px;
+    top: 9px;
+}
+
+.counterBorderGadger {
+    border: 1px solid var(--Gray);
+    border-radius: 50%;
+    background: var(--Gray);
+    left: 5px !important;
+    top: 10px !important;
+    right: inherit;
+    width: auto;
+    text-align: center;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: self-end;
+    padding: 2px 5px 0px 5px
+}
+
+.gadgetKartablBackgroundIcon {
+    background: #fff !important;
+    color: #ffc400 !important;
+    border: 1px solid #ffc400 !important;
+}
+
+.gadgetKartablFillBackgroundIcon {
+    background: #ffc400 !important;
+}
+
+.gadgetKartablColorIcon {
+    color: #ffc400 !important;
+}
+
+@media(max-width:470px) {
+    .itemMizkarData div {
+        font-size: small;
+    }
+}

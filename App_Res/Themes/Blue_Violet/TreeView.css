@@ -1,0 +1,31 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.0.0.8*/
+
+.vakata-context li > a {
+    font-family: 'IRANSansWeb';
+    font-size:13px;
+}
+
+.vakata-context, .vakata-context ul {
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    background: #f6f0f7;
+    border: 1px solid #a94bc3;
+    box-shadow: 2px 2px 2px #999999;
+}
+
+.tree-search-box {
+    border-radius: 0;
+    box-shadow: none;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: 29px;
+    padding: 5px 10px;
+    font-size: 12px; 
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;  
+}

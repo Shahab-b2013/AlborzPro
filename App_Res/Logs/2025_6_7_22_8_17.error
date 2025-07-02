@@ -1,0 +1,4 @@
+Error Datetime:6/7/2025 10:08:17 PM
+Error Type:10060
+Error Message:A transport-level error has occurred when sending the request to the server. (provider: Session Provider, error: 19 - Physical connection is not usable)
+Error Detail:insert into Sys_ErrorLogs(ErrorID, Message, Detail, ObjectIDs, ActivityID, UserID, CreateDate) values('10060', N'Invalid object name &#x27;&#x27;Hrs_Employees&#x27;&#x27;.', N'select top&#40;1&#x29; Gender from Hrs_Employees where EmployeeID&#x3D;9', '', NULL, 9, getdate());select scope_identity()

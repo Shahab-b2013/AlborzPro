@@ -1,0 +1,167 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2023 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 3.5.0.0*/
+/* Release Ferdos.BPMS*/
+
+.form-group-box {
+  padding: 30px 40px 10px 35px   ;
+  box-shadow: 0px 5px 3px 1px #4040408c;
+  background-color:#fff ;
+  border-bottom: solid 1px #e6e9ed;
+}
+
+.form-group-box .group-info {
+  padding: 0px 20px 20px 20px   ;
+}
+
+.form-group-box .group-body {
+  padding: 0px 20px 0px 20px   ;
+}
+
+.form-group-box .group-title {
+  font-family: 'IRANSansWeb';
+  font-size: 1.05rem;
+  color: #2a3f54;
+}
+
+.form-group-box .group-title small {
+  font-size: 14px;
+}
+
+
+
+
+.form-input {
+  background-color: #fffbf9; /*@MainColor-A1*/
+  border-radius: 0px 0px 0px 0px ;
+}
+
+.form-input-dis {
+  background-color: #99a5b4   ; /*X*/
+  border-radius: 0px 0px 0px 0px   ;
+}
+
+.form-taskrefer-setp {
+  color: #506495; /*@MainColor-A1*/
+}
+
+.form-taskrefer-label {
+  text-align: left;
+}
+
+.form-taskrefer-box {
+  text-align: right;
+}
+
+.form-sla-setp {
+  color: #506495; /*@MainColor-A1*/
+}
+
+.form-tim-box {
+  text-align: left;
+}
+
+.form-time-label {
+  text-align: right;
+}
+
+.form-input-placeholder {
+  color: #99a5b4; /*@MainColor-B4*/
+}
+
+.btn-browse-file {
+  background-color: #ffffff   ;
+  color: #506495; /*@MainColor-A1*/
+}
+
+.btn-remove-file {
+  background-color: #ffffff   ;
+  height: 34px;
+  color: #e08484;
+}
+
+.btn-form-submit {
+  color: #f6f6f6;
+  font-family: 'IRANSansWeb';
+  background-color: #506495; /*@MainColor-AX*/
+  width: 100px;
+  border-color: #506495; /*@MainColor-A1*/
+}
+
+
+
+.btn-danger {
+  font-family: 'IRANSansWeb';
+}
+
+.btn-form-cancel {
+  font-family: 'IRANSansWeb';
+}
+
+.input-group-addon {
+  color: #506495   ; /*@MainColor-A1*/
+  border: 1px solid #ccc;
+  width: 40px;
+  /*border-left: none;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-checkbox-label {
+  font-weight: bold;
+  padding-right: 0px   ;
+}
+
+[data-name='today'] {
+  background: #506495   ; /*@MainColor-A1*/
+}
+
+
+
+[data-name='day']:not([class^='text']) {
+  color: #333; /*X*/
+}
+
+[data-name='day']:hover {
+  background: #eee; /*X*/
+}
+
+[data-name='Md-PersianDateTimePicker'] table {
+  font-family: 'IRANSansWeb';
+}
+
+.popover {
+  border-radius: 0px 0px 0px 0px   ;
+}
+
+
+
+.message-form-success {
+  font-family: 'IRANSansWeb';
+  color: green;
+  font: 15px;
+}
+
+.message-form-error {
+  font-family: 'IRANSansWeb';
+  color: red;
+  font-size: 15px;
+}
+
+.message-form-block {
+  font-family: 'IRANSansWeb';
+}
+
+.kv-file-content img {
+  max-width: 300px;
+}
+
+.form-link {
+  color: #506495   ; /*@MainColor-A1*/
+  font-family: 'IRANSansWeb';
+}
+
+.form-text-view {
+  color: #506495   ; /*@MainColor-A2*/
+  font-weight: bold;
+}

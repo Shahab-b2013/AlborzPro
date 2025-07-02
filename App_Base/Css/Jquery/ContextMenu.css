@@ -1,0 +1,52 @@
+/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 2.0.0.0*/
+
+.site-cm-box {
+    width: 185px;
+    border: 1px solid #d2d2d2;
+    background-color: #ffffff;
+    z-index: 10000;
+    font-family: 'IRANSansWeb';
+    direction: rtl;
+    padding-top: 10px;
+}
+
+    .site-cm-box ul.site-cm-group {
+        padding-inline-start: 5px!important;
+    }
+
+        .site-cm-box ul.site-cm-group li {
+            height: 36px;
+            line-height: 36px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+.site-cm-box .site-cm-separ{
+    height:0;
+    border-top:1px solid #d2d2d2;
+}
+
+.site-cm-box ul.site-cm-group li:hover,
+.site-cm-box ul.site-cm-group li.hover {
+    color: #ffffff;
+    background-color: #33ce61;
+}
+
+.site-cm-box ul.site-cm-group li > .site-cm-box {
+    left: 185px;
+}
+
+.site-cm-box ul.site-cm-group li:hover > .site-cm-box,
+.site-cm-box ul.site-cm-group li.hover > .site-cm-box {
+    color: #000;
+}
+
+.site-cm-icon {
+    color: #666;
+    width: 0px;
+}

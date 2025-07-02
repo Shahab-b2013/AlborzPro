@@ -1,0 +1,13 @@
+﻿{
+  "GraphModel": "<mxGraphModel></mxGraphModel>",
+  "QueryModel": {
+    "ID": "@@ID",
+    "Name": "@@Name",
+    "Label": "@@Label",
+    "SelectTable": [],
+    "SelectColumn": [],
+    "SelectJoin": [],
+    "Query": "",
+    "requestToken": "@@requestToken"
+  }
+}

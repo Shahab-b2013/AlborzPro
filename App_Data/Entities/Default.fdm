@@ -1,0 +1,13 @@
+﻿{
+  "GraphModel": "",
+  "EntityModel": {
+    "Id": "@@Id",
+    "Name": "@@Name",
+    "Label": "@@Label",
+    "Type": "Core",
+    "Version": "1.1.0.core",
+    "Entities": [],
+    "EntityRelations": [],
+    "TablePrefix": "@@TablePrefix"
+  }
+}

@@ -1,0 +1,559 @@
+/* Code File(Amnpardaz Software Co. Copyright 2023 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 3.6.0.0*/
+/* Release Ferdos.BPMS*/
+
+body {
+  --mainFont: Tahoma, sans-serif;
+  font-family: var(--mainFont);
+  background-color: #2a3f54;
+  border-left: 1px solid white !important;
+}
+
+#out {
+    position: absolute;
+    top: 0px;
+    left: inherit;
+    right: 0;
+}
+
+.btnAdd {
+  background-color: white;
+  transform: translateX(50%);
+  align-items: center;
+  text-align: center;
+  display: inline-flex;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.btnUp {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 0px 0px;
+  margin: -22px -34px -1px 1px;
+  width: 27px;
+  height: 15px;
+  display: inline-grid;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.btnDown {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 0px 0px;
+  margin: 15px 2px -1px 7px;
+  width: 27px;
+  height: 15px;
+  display: inline-grid;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.btnDiv {
+  direction: rtl;
+  margin-left: 10px;
+}
+
+.btn-success {
+  color: #333333 !important;
+  border-color: #f7f7f7 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  background-color: #f7f7f7 !important;
+  background-image: linear-gradient(
+    to bottom,
+    #f7f7f7 0%,
+    #f7f7f7 100%
+  ) !important;
+}
+
+.btn-danger {
+  color: #333333 !important;
+  border-color: transparent !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 100%
+  ) !important;
+}
+
+.btnDeleteDiv {
+  direction: rtl;
+  width: auto;
+  display: inline-grid;
+  padding: 0px 0px 0px 37px;
+  float: right;
+}
+
+.btnDelete {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.divStrQuery {
+  border-style: double;
+  margin: 20px;
+}
+
+.divReportFilterQuery {
+  border-style: double;
+  margin: 20px;
+}
+
+.divStrJson {
+  border-style: double;
+  margin: 20px;
+}
+.divCalendar {
+  position: relative;
+  display: inline-flex !important;
+}
+
+.dropdown-toggle {
+  direction: rtl !important;
+  font-size: 12px !important;
+}
+
+.divContainer {
+  direction: ltr;
+}
+
+.divRow {
+  direction: rtl;
+}
+
+select,
+.dropdown-menu {
+  font-size: 12px !important;
+}
+
+.divHome {
+  direction: ltr;
+  padding: 0px 20px 50px 15px !important;
+  border-bottom: solid 1px #e6e9ed;
+  margin-bottom: 16px;
+}
+
+.fa-chevron-left {
+  transform: rotate(180deg) !important ;
+}
+
+.form-inline {
+  border-color: white !important;
+}
+
+.form-group {
+  font-family: "IRANSansWeb";
+}
+
+.form-group > label {
+  font-family: "IRANSansWeb";
+  font-weight: bold;
+}
+
+.glyphicon-chevron-up {
+  color: #99a5b4;
+  font-size: 10px;
+}
+
+.glyphicon-chevron-down {
+  font-size: 10px;
+  color: #99a5b4;
+}
+
+.glyphicon-remove {
+  align-items: center;
+  vertical-align: middle;
+}
+
+.glyphiconCalendar {
+  position: absolute;
+  right: 0px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.groupsDivContent {
+  background-color: white;
+}
+
+.groupsRowContent {
+  border-color: transparent;
+  margin: 20px 26px 20px 0px !important;
+  padding-top: 3px !important;
+}
+
+.groupsLabelChk {
+  direction: rtl !important;
+  padding: 5px 13px;
+  font-weight: normal;
+  color: black;
+  font-family: "IRANSansWeb";
+  font-size: 13px;
+}
+
+.groupsChk {
+  margin: 0px 20px 0px 25px !important;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.groupsChk:checked {
+  background-color: #0091ea;
+}
+
+.group-title {
+  font-family: "IRANSansWeb";
+  font-weight: bold;
+}
+
+.has-error .form-control {
+  border-radius: 0;
+  box-shadow: none;
+  border-color: #d2d6de;
+}
+
+.schedulerChk {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  vertical-align: middle;
+  outline: 2px solid #40c4ff !important;
+  cursor: pointer;
+}
+
+.schedulerChk:checked {
+  background-color: #0091ea;
+}
+
+.schedulerLabelChk {
+  direction: ltr !important;
+  padding: 5px 5px;
+  font-weight: normal;
+  padding-right: 45px !important;
+}
+
+input [type="select"] {
+  direction: ltr;
+  font-size: 18px !important;
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.inputTxtDiv {
+  direction: ltr !important;
+  float: right;
+}
+
+.nav > li.active > a {
+  color: #307cba;
+  font-weight: bold;
+  background-color: white;
+}
+
+li.active a {
+  color: #307cba;
+  font-weight: bold;
+  background-color: white;
+}
+
+.labelDiv {
+  font-family: IRANSansWeb;
+  background-color: #f7f7f7;
+  padding-top: 10px !important;
+  direction: ltr;
+  left: 10px;
+  position: absolute;
+  margin-right: 400px;
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.label {
+  font-weight: normal;
+  font-size: 13px;
+  color: #2270b1;
+  width: 30%;
+}
+
+.popover-title {
+  font-family: Tahoma, sans-serif;
+}
+
+.query-builder .rules-group-container {
+  background-color: #f7f7f7 !important;
+  border-color: #cccccc !important;
+  border-color: #d2d6de !important;
+}
+
+.query-builder .rules-list > *:first-child::before {
+  top: -11px !important;
+}
+
+.query-builder .rule-value-container input[type="text"] {
+  height: 34px;
+  text-align: center;
+  background-color: #f7f7f7 !important;
+  border: 1px solid #ccc;
+}
+
+.query-builder .rule-value-container input[type="number"] {
+  height: 34px;
+  text-align: center;
+  background-color: #f7f7f7 !important;
+}
+
+.query-builder .rule-value-container select,
+.query-builder .rule-value-container input[type="text"],
+.query-builder .rule-value-container input[type="number"] {
+  width: 140px;
+  display: inline-flex !important;
+  flex-flow: row wrap;
+  overflow: auto;
+}
+
+.rowContent {
+  background-color: white;
+  margin: 10px;
+  padding: 5px;
+  position: inherit;
+  border-radius: 5px;
+}
+
+.rolesDivContent {
+  background-color: white;
+}
+
+.rolesRowContent {
+  border-color: transparent;
+  margin: 20px 26px 20px 0px !important;
+  padding-top: 3px !important;
+}
+
+.rolesLabelChk {
+  direction: rtl !important;
+  padding: 5px 13px;
+  font-weight: normal;
+  color: black;
+  font-family: "IRANSansWeb";
+  font-size: 13px;
+}
+
+.rolesChk {
+  margin: 0px 20px 0px 25px !important;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.rolesChk:checked {
+  background-color: #0091ea;
+}
+
+.selectCombo {
+  display: inline-block;
+  width: 140px;
+  padding: auto;
+  margin: 1px;
+  direction: ltr;
+}
+
+.selectComboReportFilter {
+  display: inline-flex;
+  width: 140px !important;
+  direction: ltr;
+}
+
+.selectComboReportOperator {
+  display: inline-flex;
+  width: 140px !important;
+  direction: ltr;
+}
+
+.selectSqlCombo {
+  display: inline-block;
+  width: 140px;
+  padding: auto;
+  margin: 1px;
+  visibility: hidden;
+  direction: ltr;
+}
+
+.selectString {
+  height: 34px;
+  width: 140px;
+  min-width: 140px;
+  text-align: center;
+}
+
+[data-name="md-persiandatetimepicker"] table.table td {
+  font-family: Tahoma, sans-serif;
+}
+
+.txtCalendar {
+  padding: 10px 30px 10px 0px;
+  text-align: center;
+}
+
+#builder-basic {
+  border-color: white !important;
+}
+
+#btnAddRule {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  margin-top: 2px;
+  margin-bottom: -1px;
+  margin-right: 11px;
+}
+
+#btnNextStep {
+  height: 34px;
+  width: 94px;
+  border: 1px solid#2e6da4;
+  padding: 6px 12px 6px 12px;
+  margin: -90px;
+}
+
+#btnReset {
+  height: 34px;
+  width: 54px;
+  border: 1px solid #eea236;
+  padding: 6px 12px 6px 12px;
+  margin: 1px;
+}
+
+#btnSql {
+  height: 34px;
+  width: 62px;
+  border: 1px solid #2e6da4;
+  padding: 6px 12px 6px 12px;
+  margin: 1px;
+}
+#builder-basic_group_0 {
+  border-color: #f7f7f7 !important;
+}
+
+#container {
+  position: relative;
+  padding-top: 60px;
+  width: 100%;
+}
+
+#content {
+  float: revert;
+  padding: 10px 10px 6px 10px;
+  position: inherit;
+  border-radius: 5px;
+  padding-bottom: 1px !important;
+}
+
+#contentnextStep {
+  padding: 10px 10px 6px 10px;
+  position: inherit;
+  border-radius: 5px;
+  display: none;
+}
+
+#dailyDiv {
+  display: none;
+}
+
+#divContainer {
+  float: revert;
+  padding: 0px 20px 50px 15px !important;
+  border-bottom: solid 1px #e6e9ed;
+  margin-bottom: 16px;
+}
+
+#labelCommand {
+  position: static;
+  margin-right: -250px;
+  order: 2;
+}
+
+#labelSort {
+  position: static;
+  margin-right: -250px;
+  order: 1;
+}
+
+#labelFilter {
+  position: static;
+  margin-right: 200px;
+  order: 0;
+}
+
+#monthlyDiv {
+  display: none;
+}
+
+#rpt-wiz-3 {
+  margin: 0px 0px 40px 0px !important;
+}
+
+#weeklyDiv {
+  display: block;
+}
+#rpt-wiz-5 {
+  display: none;
+}
+
+#Lirpt-wiz-5 {
+  display: none;
+}
+
+#header li a {
+  display: block !important;
+  color: lightgray !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+#header li a:hover {
+  color: #ffffff !important;
+}
+
+#rpt-wiz-6 {
+  display: none;
+}
+
+#Lirpt-wiz-6 {
+  display: none;
+}
+.content-wrapper {
+  margin-left: 49px !important;
+  border-radius: 0 !important;
+}

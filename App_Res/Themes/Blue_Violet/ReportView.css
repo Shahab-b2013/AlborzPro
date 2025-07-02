@@ -1,0 +1,120 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.0.0.8*/
+
+.report-toolbar {
+    border-bottom: solid 1px whitesmoke;
+}
+
+    .report-toolbar a {
+        color: #99a5b4; /*@MainColor-B4*/
+        font-family: 'IRANSansWeb';
+    }
+
+    .report-toolbar .navbar-center {
+        font-size: 13px;
+    }
+
+.report-header {
+    font-family: 'IRANSansWeb';
+    height: 120px;
+    text-align: center;
+}
+
+.report-header-besmi {
+    font-size: 10px;
+}
+
+.report-header-title {
+    font-size: 11px;
+}
+
+.report-header-subtitle {
+    font-size: 12px;
+}
+
+.report-title {
+    font-size: 13px;
+}
+
+.report-body {
+}
+
+.report-area {
+    overflow-x: auto;
+}
+
+.report-table {
+    font-family: 'IRANSansWeb';
+     align-self: center;
+     min-width:600px;
+}
+
+.report-table-header {
+    background-color:  #99a5b4; /*@MainColor-B4*/
+    font-family: IRANSansWeb;
+    font-size: 11px;
+    color: white;
+}
+
+.report-footer {
+    height: 40px;
+    text-align: center;
+}
+
+.report-footer-title {
+    font-size: 11px;
+    font-family: 'IRANSansWeb';
+    font-style: italic;
+    font-weight: bold;
+    color: #79348C;
+}
+
+.report-part {
+}
+
+.data-region {
+
+    display: flex;
+   justify-content: center;     
+   padding:5px 5px 5px 5px;
+   overflow:auto;
+}
+
+.data-visualization {
+}
+
+.report-paging-btn {
+    margin-top: 3px;
+}
+
+.report-paging-txt {
+    margin-top: 12px;
+    font-family: 'IRANSansWeb';
+    width:50px;
+}
+
+.report-paging-lbl {
+    font-family: 'IRANSansWeb';
+}
+
+.report-record-info {
+    margin-top: 15px;
+    font-family: 'IRANSansWeb';
+}
+
+.highcharts-legend-item span {
+    font-family: 'IRANSansWeb' !important;
+}
+
+.report-table > tbody > tr > td {
+        border-right-width: 1px!important;
+    }
+
+.report-table > thead > tr > th {
+        background-color: #f6f0f7!important;/*@MainColor-A4*/
+        text-align:center!important;
+    }
+
+.report-table > tbody > tr > td {
+        text-align:center!important;
+    }

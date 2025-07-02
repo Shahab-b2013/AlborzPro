@@ -1,0 +1,31 @@
+﻿{
+  "FormID": "@@FormID",
+  "Label": "@@Label",
+  "Name": "@@Name",
+  "ItemsGrouping": true,
+  "ColumnLayout": "OnceColumn",
+  "ColumnWidth": "default",
+  "Icon": "",
+  "ActivityID": "@@FormID",
+  "DataActivityID": 0,
+  "FormItems": [],
+  "FormGroupBoxs": [
+    {
+      "FormGroupBoxID": "@@FormID0",
+      "FormID": "@@FormID",
+      "Name": "Default Box",
+      "Label": "[Default Box]",
+      "GroupIndex": 0,
+      "GroupDisplayMode": "GroupWithBox",
+      "ColumnLayout": "OnceColumn",
+      "ColumnWidth": "default",
+      "Visibility": "",
+      "Enabled": true,
+      "Version": "custom",
+      "Description": ""
+    }
+  ],
+  "Variables": {},
+  "requestToken": "@@requestToken"
+
+}

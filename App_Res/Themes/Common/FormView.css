@@ -1,0 +1,267 @@
+/* Code File(Amnpardaz Software Co. Copyright 2024 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 4.2.1.0*/
+.select2-container {
+    display: block !important;
+    margin-right: 0 !important;
+}
+
+#treeBox {
+    box-shadow: -3px 3px 12px 1px #ebeaeaa3;
+    padding: 12px 0 0;
+    border: 1px solid #d9d9d9;
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+/* Tree structure style for RTL (Right-to-Left) */
+.tree ul {
+    list-style-type: none;
+    padding-right: 20px;
+    /* Adjusted for RTL, padding on the right */
+    margin-right: 0;
+    /* Prevent unnecessary margin */
+}
+
+.tree li {
+    position: relative;
+    margin-right: -12px;
+    /* Adjusted for RTL */
+    padding: 7px 12px 7px 0px;
+    /* Adjusted for RTL, padding on the left removed */
+}
+
+.tree li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* Adjusted for RTL, right instead of left */
+    width: 20px;
+    height: 100%;
+    border-right: 1px dotted #ccc;
+    /* Horizontal connecting lines on the right */
+}
+
+.tree-item-icon {
+    margin-left: 10px;
+    /* Adjusted for RTL, margin on the left */
+    margin-right: 10px !important;
+    /* Prevent unnecessary right margin */
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    margin-left: -12px;
+    margin-right: -2px;
+    vertical-align: middle;
+}
+
+.fa-caret-left,
+.tree label {
+    font-size: 13px;
+    margin-right: -5px;
+    /* Adjusted for RTL */
+    margin-left: 0;
+    /* Prevent unnecessary left margin */
+    vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    margin-top: -2px;
+    transform: scale(1.29);
+    /* Adjust the scale value as needed */
+    margin-left: 5px;
+    margin-right: 0;
+    vertical-align: middle;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--A2);
+}
+
+/* Icons for specific roles */
+.fas.fa-building {
+    color: #007bff;
+}
+
+.fas.fa-user-tie {
+    color: #28a745;
+}
+
+/* Aligning the text and making it visually appealing */
+.tree-item-label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.darkBlue {
+    color: #000045;
+}
+
+.brown {
+    color: #851717;
+}
+
+.darkcyan {
+    color: rgb(9, 116, 116);
+}
+
+.darkgreen {
+    color: #125d00;
+}
+
+.form-group label {
+    color: #6a7a8c;
+}
+
+.form-group .form-input,
+.form-group .input-group-addon,
+.input-group-btn button,
+.input-group-btn div {
+    box-shadow: -3px 3px 12px 1px #ebeaeaa3;
+}
+
+.input-group-addon,
+.kv-fileinput-caption {
+    background-color: #fff !important;
+}
+
+.input-group-addon {
+    border-radius: 6px 0px 0px 6px !important;
+}
+
+.input-group-addon {
+    color: var(--A1) !important;
+}
+
+.input-group .form-input,
+.input-group .dropdown-toggle {
+    background-color: #fff !important;
+    border-radius: 0px 6px 6px 0px !important;
+}
+
+.close {
+    opacity: 1;
+}
+
+.box-tools .fa-times {
+    color: #fff;
+    font-size: 14px;
+}
+
+.file-preview {
+    border-radius: 5px;
+}
+
+.file-preview-frame {
+    height: max-content
+}
+
+.input-group {
+    box-shadow: none !important;
+}
+
+.input-group .kv-fileinput-caption {
+    border-radius: 5px 0 0 5px !important
+}
+
+.btn-file {
+    border-radius: 0px 5px 5px 0px !important;
+}
+
+.select2-container {
+    margin: 0 !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 32px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* .form-control {
+    height: 32px !important;
+} */
+
+.popover {
+    max-width: 100% !important;
+}
+
+@media(max-width:991px) {
+    .input-group textarea {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+}
+
+.input-group .form-input-dis {
+    background-color: var(--Gray) !important;
+}
+
+.table tr th {
+    align-content: center;
+}
+
+@media(max-width:700px) {
+    .box-body .form-group-box {
+        padding: 0 !important;
+        margin: 0 -10px !important
+    }
+
+    .form-horizontal .form-group {
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+}
+
+
+.modal-dialog {
+    overflow-y: scroll;
+    height: -webkit-fill-available
+}
+
+.modal-open .modal {
+    /* overflow-y: hidden !important; */
+}
+
+.modal-dialog {
+    overflow-y: auto !important;
+}
+
+.input-checkbox-label {
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.checkbox label {
+    padding-left: 0px;
+}
+
+.fileDownloader {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: auto;
+    border: 1px solid #ccc;
+    min-width: 100px;
+    padding: 6px 12px;
+    font-weight: bold;
+    height: 36px;
+    color: #6e7a8c;
+    border-radius: 6px;
+    transition:  0.2s ease;
+    font-size: 14px;
+    cursor: pointer !important;
+    text-decoration: none;
+}
+.emptyFileDownloader{
+    
+}
+.fileDownloader:hover , .fileDownloader:focus{
+  color: var(--A1);
+  border-color: var(--A1);
+}

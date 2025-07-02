@@ -1,0 +1,73 @@
+﻿<!-- Code File(Amnpardaz Software Co. Copyright 2025 - All Right Reserved)
+ Release Ferdos.WebAppDesk 4.2.0.0-->
+
+<div class="col-md-12 col-centered">
+    <div class="section" style="border: 1px solid transparent;">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="navbar-collapse" class="collapse navbar-collapse report-toolbar">
+                    <ul class="nav navbar-nav" style="display: flex;flex-direction: row;">
+                        <li id="Lirpt-wiz-1" class="active" onclick="clickNavbar(this.id)" changelang="allDestials"></li>
+                        <li id="Lirpt-wiz-2" onclick="clickNavbar(this.id)" changelang="data"></li>
+                        <li id="Lirpt-wiz-3" onclick="clickNavbar(this.id)" changelang="filters"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="rpt-wiz-1">
+            <div class="col-md-12">
+
+                <div class="row">
+
+                    <div class="row form-group-box col-lg-12 col-md-12" style="border: 0;border-radius: 20px;padding: 10px !important;">
+
+                        <div class="col-lg-7 col-md-10 col-sm-12  col-xs-12">
+                            <div class="form-group">
+                                <label changelang="datashema"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></div>
+
+                                    <select type="text" title="Label" id="selectReportSchema" class="form-control form-input"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label changelang="dataGrouping"></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></div>
+                                    <select type="text" title="Label" id="selectDataCategory" class="form-control form-input"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height:50px;display: flex;align-items: center;padding-right: 10px !important;">
+                    <button id="btn_rpt-wiz-1" type="button" onclick="nextTab(this.id)" class="btn btn-primary btn_submint_exit" changelang="continue"></button>
+                    <button id="btn_rpt-wiz-11" type="button" onclick="tabExit()" class="btn btn-light btn_submint_exit" changelang="cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="rpt-wiz-2">
+            <div class="col-md-12">
+                <div class="row" id="select-builder">
+                </div>
+                <div class="row" style="height:50px;display: flex;align-items: center;">
+                    <button id="btn_rpt-wiz-2" type="button" onclick="nextTab(this.id)" class="btn btn-primary btn_submint_exit" changelang="continue"></button>
+                    <button id="btn_rpt-wiz-22" type="button" onclick="tabExit()" class="btn btn-light btn_submint_exit" changelang="cancel"></button>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="rpt-wiz-3">
+            <div class="col-md-12">
+
+                <div class="row" id="filter-builder"></div>
+                <div class="row" style="height:50px;display: flex;align-items: center;">
+                    <button id="btn_rpt-wiz-3" type="button" onclick="nextTab(this.id)" class="btn btn-primary btn_submint_exit" changelang="ok"></button>
+                    <button id="btn_rpt-wiz-33" type="button" onclick="tabExit()" class="btn btn-light btn_submint_exit" changelang="cancel"></button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

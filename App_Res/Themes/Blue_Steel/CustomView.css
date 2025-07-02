@@ -1,0 +1,49 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2020 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 1.0.0.8*/
+
+.info-box-div {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+    font-family: 'IRANSansWeb';
+}
+
+.info-box-number {
+    font-size: 23px;
+    font-weight: bold;
+    color: #307cba;
+    font-family: 'IRANSansWeb';
+}
+
+.info-box-text {
+    font-size: 20px;
+    color: #73879c;
+}
+
+.info-box-icon {
+     background-color: #b6d4e7;
+}
+
+.info-box-text-muted {
+    color: #99a5b4;
+}
+
+.gadget-box-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #307cba;
+    font-family: 'IRANSansWeb';
+}
+
+.gadget-box-text {
+    font-size: 17px!important;
+    color: #73879c!important;
+}
+
+.gadget-box-splitter {
+    border: 1px solid #e7e7e7;
+}
+
+.tab-box-text {
+    font-size: 15px!important;
+    color: #73879c!important;
+}

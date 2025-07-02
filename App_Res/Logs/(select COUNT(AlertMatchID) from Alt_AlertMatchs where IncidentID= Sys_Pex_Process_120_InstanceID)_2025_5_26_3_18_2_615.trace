@@ -1,0 +1,2 @@
+Trace Datetime:5/26/2025 3:18:02 AM
+Trace Type:(select COUNT(AlertMatchID) from Alt_AlertMatchs where IncidentID= Sys_Pex_Process_120_InstanceID)

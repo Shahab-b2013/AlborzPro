@@ -1,0 +1,427 @@
+﻿/* Code File(Amnpardaz Software Co. Copyright 2023 - All Right Reserved)*/
+/* Release Ferdos.WebAppDesk 3.5.0.0*/
+/* Release Ferdos.BPMS*/
+
+body {
+  --A1: #016158;
+  --A2: #208c8b;
+  --A3: #44bfc7;
+  --A4: #e5ffff;
+  --C1: #0161581f;
+  --BlueSmoke: #73879c;
+  --BlueLight: #307cba;
+  --BlueLikeSmoke: #2a3f54;
+  --DarkBlue: #34485c;
+  --Smoke: #e7e7e7;
+  --White: #ffffff;
+  --WhiteSmoke: #f6f6f6;
+  --WhiteSmoke1: #e6e9ed;
+  --WhiteSmoke2: #f7f7f7;
+  --Gray: #d2d6de;
+  --GraySmoke: #b7b7b7;
+  --copyrightlbl: #72afd2;
+}
+
+#logo {
+  background-color: var(--A1);
+  /*@MainColor-A1*/
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  padding: 0 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--A2);
+}
+#logo:hover {
+  cursor: pointer;
+}
+
+#logo_lg {
+  font-family: "IRANSansWeb";
+  font-size: 17px;
+  right: 10px;
+  position: absolute;
+}
+
+#logo_mini {
+  font-family: "IRANSansWeb";
+}
+
+#headerBar {
+  background-color: var(--A1);
+  /*@MainColor-A1*/
+}
+
+#headerMenuBar > li > a {
+  color: var(--White);
+  font-family: "IRANSansWeb";
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#notifierBar > li > a {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+}
+
+#toggleSettings,
+#toggleSideBar {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+}
+
+#toggleSideBar:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--WhiteSmoke);
+}
+
+#userLabel {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  font-family: "IRANSansWeb";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#userHeader {
+  background-color: var(--BlueLight);
+  /*@MainColor-A1*/
+  font-family: "IRANSansWeb";
+}
+
+#userMenu {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  font-family: "IRANSansWeb";
+}
+
+#userMenu .btn-profile {
+  font-size: 12px;
+}
+
+#tobBar {
+  background-color: var(--White);
+  font-family: "IRANSansWeb";
+  height: 65px;
+  border-bottom: solid 3px var(--A2);
+  /*@MainColor-A2*/
+}
+
+#topMenuBar > li {
+  background-color: var(--White);
+  font-size: 15px;
+  width: 160px;
+}
+
+#topMenuBar > li > a {
+  color: var(--A2);
+  /*@MainColor-A2*/
+  font-weight: bold;
+  border-left: solid 1px var(--WhiteSmoke1);
+  /*@MainColor-B5*/
+}
+
+#topMenuBar > li > a:hover {
+  background-color: var(--WhiteSmoke2);
+  /*@LightColor-A1*/
+  color: var(--BlueSmoke);
+  /*@MainColor-B3*/
+  font-weight: bold;
+}
+
+#topMenuBar > li > a:active,
+#topMenuBar > li > a:focus {
+  background-color: var(--WhiteSmoke2);
+  /*@LightColor-A1*/
+  color: var(--BlueSmoke);
+  /*@MainColor-B3*/
+  font-weight: bold;
+}
+
+#userInfo {
+  font-family: "IRANSansWeb";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#userInfo > a {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  font-size: 13px;
+}
+
+#userInfo > p {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  font-size: 13px;
+}
+
+#settingBar {
+  background-color: var(--White);
+  border-right: 1px solid var(--WhiteSmoke1);
+  /*@MainColor-B5*/
+}
+
+#sideBar {
+  background-color: var(--BlueLikeSmoke);
+  /*@MainColor-B1*/
+  border-left: 1px solid var(--Gray);
+}
+
+#sideBar a {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  font-family: "IRANSansWeb";
+}
+
+#sideBar a:hover {
+  text-decoration: none;
+}
+
+#sideTreeMenu > li > a {
+  border-left: solid 3px transparent;
+}
+
+#sideTreeMenu > li:hover > a,
+#sideTreeMenu > li.active > a {
+  background-color: var(--DarkBlue);
+  /*@MainColor-B2*/
+  font-weight: bold;
+  border-left: solid 3px var(--A2);
+  /*@MainColor-A2*/
+}
+
+#sideTreeMenu > li > .treeview-menu {
+  background-color: var(--DarkBlue);
+  /*@MainColor-B2*/
+  margin: 0 1px;
+}
+
+#sideTreeMenu .treeview-menu > li > a {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+  font-family: "IRANSansWeb";
+}
+
+#sideTreeMenu .treeview-menu > li.active > a,
+#sideTreeMenu .treeview-menu > li > a:hover {
+  text-decoration: none;
+}
+
+#versionLabel,
+#copyRightLabel {
+  font-family: "Tahoma";
+  font-size: 13px;
+  /* font-weight: bold; */
+  color: var(--copyrightlbl);
+  margin: 0px 10px;
+  /*@MainColor-A1*/
+}
+
+#content {
+  background-color: var(--White);
+  /*@LightColor-A1*/
+}
+
+#footer {
+  background-color: var(--White);
+}
+
+.fa-style {
+  font-size: 18px;
+}
+
+.fa-style-m {
+  font-size: 16px;
+}
+
+.page-header {
+  color: var(--BlueSmoke);
+  /*@MainColor-B3*/
+  font-family: "IRANSansWeb";
+  font-size: 14px !important;
+}
+
+.page-header a {
+  color: var(--BlueSmoke);
+  /*@MainColor-B3*/
+}
+
+.box .box-title {
+  color: var(--BlueSmoke);
+  /*@MainColor-B4*/
+  font-family: "IRANSansWeb";
+}
+
+.box .box-body {
+  font-family: "IRANSansWeb";
+}
+
+.box .btn-box-tool {
+  font-family: "IRANSansWeb";
+}
+
+.box .box-solid {
+  border-radius: 0px 0px 0px 0px;
+  border: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.row {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.col-xs-1,
+.col-sm-1,
+.col-md-1,
+.col-lg-1,
+.col-xs-2,
+.col-sm-2,
+.col-md-2,
+.col-lg-2,
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3,
+.col-xs-4,
+.col-sm-4,
+.col-md-4,
+.col-lg-4,
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5,
+.col-xs-6,
+.col-sm-6,
+.col-md-6,
+.col-lg-6,
+.col-xs-7,
+.col-sm-7,
+.col-md-7,
+.col-lg-7,
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8,
+.col-xs-9,
+.col-sm-9,
+.col-md-9,
+.col-lg-9,
+.col-xs-10,
+.col-sm-10,
+.col-md-10,
+.col-lg-10,
+.col-xs-11,
+.col-sm-11,
+.col-md-11,
+.col-lg-11,
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+  padding: 0px 0px 0px 0px;
+}
+
+.section {
+  background-color: var(--White);
+  border: 1px solid var(--WhiteSmoke1);
+  /*@MainColor-B5*/
+  margin: 10px 10px 10px 10px;
+}
+
+.box .box-solid {
+  border-radius: 0px 0px 0px 0px;
+  border: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+#pageBoxModal1 .box-header {
+  background-color: var(--BlueLight);
+  /*@MainColor-A1*/
+}
+
+#pageBoxModal2 .box-header {
+  background-color: var(--BlueLight);
+  /*@MainColor-A1*/
+}
+
+#pageBoxModal3 .box-header {
+  background-color: var(--BlueLight);
+  /*@MainColor-A1*/
+}
+
+#boxTitleModal1 {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+}
+
+#boxTitleModal2 {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+}
+
+#boxTitleModal3 {
+  color: var(--Smoke);
+  /*@LightColor-A3*/
+}
+
+.btn-form-add {
+  color: var(--WhiteSmoke);
+  font-family: "IRANSansWeb";
+  background-color: var(--BlueLight);
+  /*@MainColor-AX*/
+  border-color: var(--BlueLight);
+  /*@MainColor-A1*/
+}
+
+.btn-form-add:hover,
+.btn-form-add:focus,
+.btn-form-add.focus,
+.btn-form-add:active,
+.btn-form-add.active {
+  background-color: var(--BlueLight);
+  /*@MainColor-A1*/
+  color: var(--White);
+}
+
+.dropdown-menu > li > a {
+  font-family: "IRANSansWeb";
+}
+
+.control-sidebar-bg > .form-group {
+  font-family: "IRANSansWeb";
+}
+
+div.map-toolbar {
+  top: 100px;
+  left: 30px;
+  z-index: 1000;
+  position: relative;
+  color: var(--BlueLikeSmoke);
+  background-color: ghostwhite;
+  width: 200px;
+  font-size: 13px;
+  border-radius: 10px;
+  border: 1px solid var(--GraySmoke);
+  padding: 5px 5px 5px 5px;
+}
+
+.btn-primary {
+  background-color: var(--A1) !important;
+  border-color: var(--A3) !important;
+}
+.btn-light {
+  color: var(--A1);
+}
+
+#divExit {
+  background-color: var(--A1) !important;
+}
+
+#currentPositionDiv {
+  background-color: var(--C1);
+}
