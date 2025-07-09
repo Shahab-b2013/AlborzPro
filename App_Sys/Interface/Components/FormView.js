@@ -1160,6 +1160,26 @@ function formView(
           }
         });
 
+        if (_formOptions.ActivityID == 1030100) {
+          $.ajax({
+            url: "../../App_Sys/Services/CustomActivity.asmx/CreateNewAlert",
+            type: "POST",
+            contentType: "application/json",
+            async: true,
+            data: JSON.stringify({
+              alertObj: JSON.stringify({ ESID: activiyParam.ParamValue }),
+            }),
+            success: function (response) {},
+            error: function (xhr, status, error) {
+              console.error("Error Fetching Form Items:", error);
+            },
+          });
+          $(".wrapper").unblock();
+
+          redirectPage(100006, 0);
+          return;
+        }
+
         data.append("submitKey", _SubmitKey);
 
         data.append("activiyParams", JSON.stringify(activiyParams));
@@ -3475,7 +3495,11 @@ function formView(
         );
       }
 
-      $(itemInputID).val(getDefaultValue(itemObj));
+      let value = "";
+
+      if (itemObj.Name != "Time Spend") value = getDefaultValue(itemObj);
+
+      $(itemInputID).val(value);
 
       if (itemObj.ActionOnChange != "") {
         $(itemInputID).change(function () {
@@ -3671,10 +3695,19 @@ function formView(
             allowedFileExtensions: jQuery.parseJSON(itemObj.RegexFormat),
             maxFileSize: itemObj.MaxValueLenght,
           });
-
-          $("#form-group-" + itemObj.FormItemID + " .file-caption-name").html(
-            '<div class="file-caption-name" title="1 file selected"><i class="glyphicon glyphicon-file kv-caption-icon"></i>file selected</div>'
-          );
+          const input = itemObj.DefaultValue;
+          if (input != undefined && input != "") {
+            const match = input.match(/src="([^"]+)"/);
+            let fileSrc = "";
+            let fileName = "";
+            if (match && match[1]) {
+              fileSrc = match[1];
+              fileName = fileSrc.substring(fileSrc.lastIndexOf("/") + 1);
+            }
+            $("#form-group-" + itemObj.FormItemID + " .file-caption-name").html(
+              `<div class="file-caption-name" title="1 file selected"><i class="glyphicon glyphicon-file kv-caption-icon"></i><a data-file-attach-code="${fileName}" class="btn-download-form" style="cursor: pointer;"><i class="fa fa-download" style="padding: 0 5px;"></i>Download Selected File</a></div>`
+            );
+          }
         }
       } else {
         const input = itemObj.DefaultValue;
@@ -3695,7 +3728,7 @@ function formView(
         if (itemObj.DefaultValue) {
           if (itemObj.AttributeTypeName !== "Image") {
             downloadHtml += `
-            <div class="download-wrapper" style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+            <div class="download-wrapper" style="display: flex; align-items: center; gap: 12px; margin-top: 8px;height: 70px;">
               <a href="#"
                  class="btn-download-form fileDownloader"
                  data-file-attach-code="${fileName}"
@@ -3785,7 +3818,6 @@ function formView(
       return;
     }
   };
-
 
   var renderTableFileBrowse = function (itemObj, FileBrowseID, fileName) {
     for (let i = 0; i < FileBrowseID.length; i++) {
@@ -5160,7 +5192,7 @@ function formView(
         '<div class="form-group"><label for="form-item-' +
         itemObj.FormItemID +
         '">' +
-        localize($$Lang=="Fa"?"تکرار":"Repeat ") +
+        localize($$Lang == "Fa" ? "تکرار" : "Repeat ") +
         itemObj.Label +
         '</label><div class="input-group"><div class="input-group-addon"><i class="fa-solid fa fa-key"></i></span></div><input ' +
         disableFormItem +
@@ -6294,6 +6326,15 @@ function formView(
 
     if (index > -1) $TableData.splice(index, 1);
 
+    if (_formItemId == 620029045) {
+      _DefaultObj.Rows = _DefaultObj.Rows.filter((row) => {
+        if (row.ColumnState !== "Deleted") {
+          row.ColumnState = "-";
+          return true; // Keep the row
+        }
+        return false; // Remove deleted rows
+      });
+    }
     $TableData.push(_DefaultObj);
 
     let _Rows = [];
@@ -6304,9 +6345,7 @@ function formView(
       itemContent += `<tbody id="tbody_${_formItemId}">`;
 
       if (_formItemId == 620029045) {
-        _Rows = _Rows.filter(
-          (row) => !(row.RowID == 0)
-        );
+        _Rows = _Rows.filter((row) => !(row.RowID == 0));
       }
       for (let i = 0; i < _Rows.length; i++) {
         let values = Object.values(_Rows[i]);

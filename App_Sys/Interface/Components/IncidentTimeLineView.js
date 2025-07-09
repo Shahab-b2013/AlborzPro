@@ -76,17 +76,15 @@ function timeLineView(id, objKey) {
     try {
       $.each(_data, function (index, timeLine) {
         $("#timeLine-" + pageElementID).append(
-          '<div class="direct-chat-msg ' +
-            (index % 2 == 0 ? "" : "right") +
-            ' timeLine">' +
+          '<div class="direct-chat-msg  timeLine">' +
             '<div class="direct-chat-info clearfix">' +
             '<span class="direct-chat-timestamp pull-' +
-            (index % 2 == 0 ? "left" : "right") +
+            (index % 2 == 0 ? "left" : "left") +
             '">' +
             timeLine[datetimeField] +
             "</span>" +
             '<span class="direct-chat-name  pull-' +
-            (index % 2 == 0 ? "right" : "left") +
+            (index % 2 == 0 ? "right" : "right") +
             '">' +
             timeLine[ownerField] +
             "</span>" +
@@ -208,15 +206,15 @@ function timeLineView(id, objKey) {
 
     let historyTab = `<ul class="nav nav-tabs" id="ul-1">`;
 
-    historyTab += ` <li id="History-tab" data-index="0" class="tablinks active" onclick="tabOnActiion(event,'timeLine-${modalID}')">
+    historyTab += ` <li id="History-tab" data-index="0" class="tablinks active" onclick="tabOnActiion('History-tab','timeLine-${modalID}')">
         <a style="cursor:pointer" data-toggle="tab" class="tab-box-text">&nbsp;History </a></li>`;
 
     if ($(`#userLabel span`).text().trim() != "Analyzer") {
-      historyTab += `<li id="Alert-tab" data-index="1" class="tablinks" onclick="tabOnActiion(event,'Alert-${_objKey}')">
+      historyTab += `<li id="Alert-tab" data-index="1" class="tablinks" onclick="tabOnActiion('Alert-tab','Alert-${_objKey}')">
          <a style="cursor:pointer" data-toggle="tab" class="tab-box-text">&nbsp;Alerts </a></li>`;
 
-      historyTab += `<li id="Comment-tab" data-index="2" class="tablinks" onclick="tabOnActiion(event,'Comment-${_objKey}')">
-         <a style="cursor:pointer" data-toggle="tab" class="tab-box-text">&nbsp;Comments </a></li>`;
+      // historyTab += `<li id="Comment-tab" data-index="2" class="tablinks" onclick="tabOnActiion('Comment-tab','Comment-${_objKey}')">
+      //    <a style="cursor:pointer" data-toggle="tab" class="tab-box-text">&nbsp;Comments </a></li>`;
     }
 
     historyTab += `</ul>`;
@@ -309,6 +307,11 @@ function timeLineView(id, objKey) {
 
     try {
       $.each(_data, function (index, timeLine) {
+        let isComment = false;
+        if (timeLine[subtitleField] == "UserComment") {
+          isComment = true;
+          timeLine[subtitleField] = "";
+        }
         if ($$PackageName == "سامانه پشتیبانی پادویش") {
           //Sepad Compatibility
           if ($$UserProp.MasterRole.indexOf("ارشد پشتیبانی") == -1) {
@@ -349,17 +352,30 @@ function timeLineView(id, objKey) {
           }
         }
         $("#timeLine-" + modalID).append(
-          '<div class="direct-chat-msg ' +
-            (index % 2 == 0 ? "" : "right") +
-            ' timeLine">' +
+          "<br>" +
+            `<div class="direct-chat-msg  timeLine" ` +
             '<div class="direct-chat-info clearfix">' +
             '<span class="direct-chat-timestamp pull-' +
-            (index % 2 == 0 ? "left" : "right") +
+            (index % 2 == 0 ? "left" : "left") +
             '">' +
             timeLine[datetimeField] +
+            ($$Lang == "En"
+              ? " (" +
+                pluralizeElapsedTime(
+                  timeLine[elapsedTimeField]
+                    .replace("ماه", "Month")
+                    .replace("روز", "Day")
+                    .replace("ساعت", "Hour")
+                    .replace("دقیقه", "Minute")
+                    .replace("ثانیه", "Second")
+                    .replace("همین حالا", "Just Now")
+                    .replace("قبل", "Ago")
+                ) +
+                ")"
+              : " (" + timeLine[elapsedTimeField] + ")") +
             "</span>" +
             '<span class="direct-chat-name  pull-' +
-            (index % 2 == 0 ? "right" : "left") +
+            (index % 2 == 0 ? "right" : "right") +
             '">' +
             timeLine[ownerField] +
             "</span>" +
@@ -367,19 +383,10 @@ function timeLineView(id, objKey) {
             '<img class="direct-chat-img" src="App_Res/Images/Users/' +
             timeLine[ownerFaceField] +
             '">' +
-            '<div class="direct-chat-text timeline-box">' +
-            '<h5 class="timeline-title"> <b>' +
+            `<div class="direct-chat-text timeline-box" style="background:${timeLine[statusColorField]}">` +
+            `<h5 class="timeline-title" style=""> <b>` +
             timeLine[titleField].replace("شده", "").replace("خورده", "") +
-            ($$Lang == "En"
-              ? " (" +
-                timeLine[elapsedTimeField]
-                  .replace("ماه", "Month")
-                  .replace("روز", "Day")
-                  .replace("ساعت", " Hour")
-                  .replace("دقیقه", "Minute")
-                  .replace("قبل", "Ago") +
-                ") </b>"
-              : " (" + timeLine[elapsedTimeField] + ") </b>") +
+            "</b>" +
             (jQuery.parseJSON(
               timeLine["AllowUpdate"] &&
                 $$UserProp.MasterRole.indexOf("امن پرداز") > -1
@@ -390,7 +397,11 @@ function timeLineView(id, objKey) {
               : "") +
             "</h5>" +
             //'<h6 class="timeline-subtitle">' + timeLine[subtitleField] + (timeLine[durationTimeField] != '' ? ' ' + ($$Lang == 'Fa' ? 'به مدت' : 'for')+' ' + timeLine[durationTimeField] : '') + '</h6>' +
-            '<div class="timeline-text">' +
+            `<div class="timeline-text" style="${
+              isComment
+                ? "text-align: right;direction: rtl;border-bottom: 0 !important;border-top: 1px solid #eddfb8;"
+                : ""
+            }">` +
             '<div class="timeline-inner-text">' +
             timeLine[descField] +
             "</div>" +
@@ -407,9 +418,9 @@ function timeLineView(id, objKey) {
               ? timeLine[attachmentField + "4"] + "<br/><br/>"
               : "") +
             "</div>" +
-            '<h5 class="timeline-status" style="color:' +
-            timeLine[statusColorField] +
-            '">' +
+            `<h5 class="timeline-status" style="${
+              isComment ? "display:none;" : ""
+            }">` +
             ($$Lang == "Fa" ? "وضعیت" : "Status") +
             ":<b> " +
             timeLine[statusField] +
@@ -472,6 +483,17 @@ function timeLineView(id, objKey) {
   };
 }
 
+function pluralizeElapsedTime(text) {
+  if (text.includes("Just Now")) return "Just Now";
+
+  return text.replace(
+    /(\d+)\s+(Second|Minute|Hour|Day|Month)\b/g,
+    function (_, number, unit) {
+      return number + " " + unit + (number === "1" ? "" : "s");
+    }
+  );
+}
+
 function addComment(modalID, activityID, instanceID) {
   if ($(`#comment_${modalID}`).length) {
     $(`#commentText_${modalID}`).val("");
@@ -523,7 +545,7 @@ function addComment(modalID, activityID, instanceID) {
                         <i class="glyphicon glyphicon-edit"></i>
                       </div>
                       <textarea
-                        style="height: 196px;width: 824px;text-align: left;"
+                        style="height: 196px;width: 824px;text-align: right;direction: rtl;"
                         class="form-control form-input"
                         id="commentText_${modalID}"
                         rows="7"
@@ -574,7 +596,7 @@ function addComment(modalID, activityID, instanceID) {
       let users = $(`#selectUsers`).val();
       let comment = $(`#commentText_${modalID}`).val().trim();
 
-      comment += `</br>comment for: (${users})`;
+      if (users != undefined) comment += `</br> خطاب به  : (${users})`;
 
       let submitReady = true;
       if (comment == undefined || comment == "") submitReady = false;
@@ -588,12 +610,9 @@ function addComment(modalID, activityID, instanceID) {
             currentIncidentID: instanceID,
             alertIDList: [],
             comment: comment,
-            actionn: "Add Manual Comment",
+            actionn: "",
           }),
-          async:false,
-          success: function (response) {
-            console.log("Comment saved successfully. Response:", response.d);
-          },
+          async: false,
           error: function (xhr, status, error) {
             console.error("Error saving comment:", error);
             alert("Failed to submit comment.");
@@ -672,7 +691,7 @@ function openEditForm(objectID) {
   openModalContext(2, 1020103, "FormView", [objectID], 0, null, null);
 }
 
-function tabOnActiion(evt, tabname) {
+function tabOnActiion(id, tabname) {
   $(`.FooterMessage`).remove();
 
   // Declare all variables
@@ -692,7 +711,9 @@ function tabOnActiion(evt, tabname) {
 
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabname).style.display = "block";
-  evt.currentTarget.className += " active";
+
+  let tab = document.getElementById(id);
+  tab.className += " active";
 
   const _objKey = +tabname.split("-")[1];
 
@@ -831,7 +852,7 @@ function SearchFNC(Id, TBL) {
         td = tr[i].getElementsByTagName("td")[0].id;
         toggleDiv(td);
       } else {
-        if (tr[i].classList!="hidden") {
+        if (tr[i].classList != "hidden") {
           tr[i].style.display = "none";
         }
         let td = tr[i].getElementsByTagName("td");

@@ -354,16 +354,6 @@ body.modal-open {
     display: none;
 }
 
-#myMessageInput {
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    /* width: 150px; */
-    font-size: 16px;
-    border: 1px solid #ddd;
-    margin: 0px 5px;
-    float: right;
-    height: 28px;
-}
 
 #selectAll {
     display: inline-flex;
@@ -401,6 +391,9 @@ body.modal-open {
     align-items: center;
     justify-content: left;
     padding: 0px 14px;
+    padding-bottom: 0px;
+   margin: 2px 5px 0px 0px;
+    padding-bottom: 6px;
 }
 
 
@@ -529,6 +522,7 @@ body.modal-open {
     justify-content: center;
     display: flex;
     align-items: center;
+    margin: 15px 0px !important;
 }
 
 .mx-3 {
@@ -995,7 +989,7 @@ button:not(:disabled) {
 .direct-chat-messages {
     height: auto;
     display: block;
-    border: 1px solid rgb(204, 204, 204);
+    border: 1px solid rgb(204 204 204 / 38%);
     margin: 10px 10px 0px;
     border-radius: 5px;
     padding: 15px !important;
@@ -1067,7 +1061,7 @@ button:not(:disabled) {
 }
 
 
-#myMessageInput {
+#searchBtn {
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
@@ -1078,6 +1072,16 @@ button:not(:disabled) {
     /* border: 1px solid #ced4da; */
     border-radius: 4px;
     transition: border-color 0.3s ease;
+      background-position: 10px 10px;
+    background-repeat: no-repeat;
+    /* width: 150px; */
+    font-size: 16px;
+    border: 1px solid #ddd;
+    margin: 0px 5px;
+    height: 28px;
+    right: 140px;
+    position: absolute;
+    font-size: 13px;
 }
 
 #rowsPerPageSelect {
@@ -1092,9 +1096,10 @@ button:not(:disabled) {
     transition: border-color 0.3s ease;
     position: absolute;
     right: 80px;
+    height: inherit;
 }
 
-#myMessageInput:focus,
+#searchBtn:focus,
 #rowsPerPageSelect:focus {
     /* border-color: #80bdff; */
     outline: none;

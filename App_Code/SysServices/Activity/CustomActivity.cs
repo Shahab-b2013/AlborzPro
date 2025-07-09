@@ -1,13 +1,19 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.InkML;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
+
 
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -142,26 +148,26 @@ public class CustomActivity : System.Web.Services.WebService
 
             }
 
-
-
-            List<object> alertsList = new List<object>();
-
-            List<int> tmpCommentIds = new List<int>();
+            List<string> addChangesList = new List<string>();
+            List<string> moveChangesList = new List<string>();
 
             for (int i = 0; i < alertIDList.Count; i++)
             {
-
-                string changes = "Add Alert " + alertIDList[i] + " From Incident " + targetIncidentIDs[i];
-                SqlDataProvider.ExecuteScalarQuery("INSERT INTO [dbo].[Alt_Comments]([Comment],[UserId],[CommentDate],[Changes],[IncidentID]) VALUES (N'" + comment + "',N'" + userID + "',GETDATE(),N'" + changes + "',N'" + currentIncidentID + "'); SELECT SCOPE_IDENTITY();");
-
-                changes = "Move Alert " + alertIDList[i] + " To Incident " + currentIncidentID;
-                SqlDataProvider.ExecuteScalarQuery("INSERT INTO [dbo].[Alt_Comments]([Comment],[UserId],[CommentDate],[Changes],[IncidentID]) VALUES (N'" + comment + "',N'" + userID + "',GETDATE(),N'" + changes + "',N'" + targetIncidentIDs[i] + "'); SELECT SCOPE_IDENTITY();");
-
+                addChangesList.Add("Add Alert " + alertIDList[i] + " From Incident " + targetIncidentIDs[i]);
+                moveChangesList.Add("Move Alert " + alertIDList[i] + " To Incident " + currentIncidentID);
             }
 
-            if (targetIncidentIDs.Count == 0) targetIncidentIDs.Add(0);
+            string addChanges = string.Join("\n", addChangesList);
+            string moveChanges = string.Join("\n", moveChangesList);
 
-            return targetIncidentIDs[0];
+            SqlDataProvider.ExecuteScalarQuery("INSERT INTO [dbo].[Alt_Comments]([Comment],[UserId],[CommentDate],[Changes],[IncidentID]) VALUES (N'" + comment + "',N'" + userID + "',GETDATE(),N'" + addChanges + "',N'" + currentIncidentID + "'); SELECT SCOPE_IDENTITY();");
+
+            if (targetIncidentIDs.Count > 0)
+            {
+                SqlDataProvider.ExecuteScalarQuery("INSERT INTO [dbo].[Alt_Comments]([Comment],[UserId],[CommentDate],[Changes],[IncidentID]) VALUES (N'" + comment + "',N'" + userID + "',GETDATE(),N'" + moveChanges + "',N'" + targetIncidentIDs[0] + "'); SELECT SCOPE_IDENTITY();");
+            }
+
+            return targetIncidentIDs.Count > 0 ? targetIncidentIDs[0] : 0;
         }
     }
 
@@ -247,6 +253,34 @@ public class CustomActivity : System.Web.Services.WebService
             var serializer = new JavaScriptSerializer();
             AlertData alert = serializer.Deserialize<AlertData>(alertObj);
 
+            // Generate random/dummy values for required fields
+            Random rand = new Random();
+
+            if (alert.PadvishServerID == null) alert.PadvishServerID = rand.Next(1, 100);
+            if (alert.AlertQueryID == null) alert.AlertQueryID = rand.Next(1, 100);
+            if (string.IsNullOrEmpty(alert.MatchHash)) alert.MatchHash = Guid.NewGuid().ToString("N");
+            if (string.IsNullOrEmpty(alert.ClientName)) alert.ClientName = "Client_" + Guid.NewGuid().ToString("N").Substring(0, 5);
+            if (string.IsNullOrEmpty(alert.Application)) alert.Application = "App_" + Guid.NewGuid().ToString("N").Substring(0, 5);
+            if (string.IsNullOrEmpty(alert.Target)) alert.Target = "Target_" + Guid.NewGuid().ToString("N").Substring(0, 5);
+            if (string.IsNullOrEmpty(alert.TargetType)) alert.TargetType = "Test Target";
+            if (string.IsNullOrEmpty(alert.Direction)) alert.Direction = "Test Direction";
+            if (string.IsNullOrEmpty(alert.ClientIP)) alert.ClientIP = "192.168.1." + rand.Next(1, 255);
+            if (string.IsNullOrEmpty(alert.Protocol)) alert.Protocol = "TCP";
+            if (string.IsNullOrEmpty(alert.RemoteIP)) alert.RemoteIP = "10.0.0." + rand.Next(1, 255);
+            if (string.IsNullOrEmpty(alert.MalwareName)) alert.MalwareName = "TestMalware";
+            if (string.IsNullOrEmpty(alert.Action)) alert.Action = "Test Action";
+            if (string.IsNullOrEmpty(alert.Path)) alert.Path = @"C:\Test\Path.exe";
+            if (string.IsNullOrEmpty(alert.ApplicationPath)) alert.ApplicationPath = @"C:\Program Files\TestApp\App.exe";
+            if (string.IsNullOrEmpty(alert.ScanType)) alert.ScanType = "RealTime";
+            if (string.IsNullOrEmpty(alert.EventDate)) alert.EventDate = DateTime.Now.ToString("yyyy/MM/dd");
+            if (string.IsNullOrEmpty(alert.DetectionType)) alert.DetectionType = "Test Type";
+            if (string.IsNullOrEmpty(alert.PMSIP)) alert.PMSIP = "172.16.0." + rand.Next(1, 255);
+            if (string.IsNullOrEmpty(alert.Description)) alert.Description = "Auto-generated alert for testing.";
+            if (string.IsNullOrEmpty(alert.SeverityLevel)) alert.SeverityLevel = "YellowAlert";
+            if (string.IsNullOrEmpty(alert.SupportGroup)) alert.SupportGroup = "";
+
+
+            int newAlertId = 0;
             using (SqlConnection conn = SqlDataProvider.DbConnection)
             {
                 string sql = @"
@@ -254,20 +288,21 @@ public class CustomActivity : System.Web.Services.WebService
                 (
                     [PadvishServerID], [AlertQueryID], [MatchHash], [ClientName], [Application], [Target], [TargetType], [Direction],
                     [ClientIP], [Protocol], [RemoteIP], [MalwareName], [Action], [Path], [ApplicationPath], [ScanType], [EventDate],
-                    [DetectionType] , [PMSIP], [Description] , [SeverityLevel], [SupportGroup] , [IncidentID] , [StarterID] , [_IsDeleted]
+                    [DetectionType] , [PMSIP], [ESID] , [Description] , [SeverityLevel], [SupportGroup] , [IncidentID] , [StarterID] , [_IsDeleted]
                 )
                 VALUES
                 (
                     @PadvishServerID, @AlertQueryID, @MatchHash, @ClientName, @Application, @Target, @TargetType, @Direction,
                     @ClientIP, @Protocol, @RemoteIP, @MalwareName, @Action, @Path, @ApplicationPath, @ScanType, dbo.ConvertJalaliToGregorian(@EventDate),
-                    @DetectionType, @PMSIP, @Description, @SeverityLevel, @SupportGroup , @IncidentID , @StarterID , 0  
-                )";
+                    @DetectionType, @PMSIP,  @ESID , @Description, @SeverityLevel, @SupportGroup , @IncidentID , @StarterID , 0  
+                );SELECT SCOPE_IDENTITY();";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@PadvishServerID", (object)alert.PadvishServerID ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@AlertQueryID", (object)alert.AlertQueryID ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@IncidentID", (object)alert.IncidentID ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ESID", (object)alert.ESID ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@StarterID", userID);
 
 
@@ -293,15 +328,13 @@ public class CustomActivity : System.Web.Services.WebService
                     cmd.Parameters.AddWithValue("@SupportGroup", (object)alert.SupportGroup ?? DBNull.Value);
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-
-
+                    newAlertId = Convert.ToInt32(cmd.ExecuteScalar());
                     UpdateStateForId(conn, (int)alert.IncidentID);
 
                 }
             }
 
-
+            SqlDataProvider.ExecuteScalarQuery("INSERT INTO [dbo].[Alt_Comments]([Comment],[UserId],[CommentDate],[Changes],[IncidentID]) VALUES (N'',N'" + userID + "',GETDATE(),N'Created New Alert (ID: " + newAlertId + ") For Incident " + (int)alert.IncidentID + "',N'" + (int)alert.IncidentID + "');");
 
             return "Alert inserted successfully!";
         }
@@ -311,23 +344,102 @@ public class CustomActivity : System.Web.Services.WebService
         }
     }
 
+    //[WebMethod(EnableSession = true)]
+    //public string GetFilteredAlerts(string startDate, string endDate, string instanceId, string color)
+    //{
+    //    Dictionary<string, object> data = new Dictionary<string, object>();
+
+    //    List<Dictionary<string, object>> Alerts = SqlDataProvider.ExecuteRowsQuery(@"SELECT   SeverityLevel AS Color,  AlertMatchID AS AlertID, ClientName AS ClientName,    
+    //                            ClientIP AS ClientIP, PMSIP AS PMSIP,MalwareName AS Malware,                      
+    //                            MDR_ReceivedDate AS ClientDate,  RecordDate AS AlertDate, IncidentID AS IncidentID  
+    //                            FROM dbo.Alt_AlertMatchs  WHERE (IncidentID <> " + instanceId + @" OR IncidentID IS NULL)      
+    //                            AND  TRY_CONVERT(DATETIME, CreatedDate) >  dbo.JalaliToGregorian('" + startDate + @"')           
+    //                            AND TRY_CONVERT(DATETIME, CreatedDate) <  dbo.JalaliToGregorian('" + endDate + @"')         
+    //                            AND SeverityLevel LIKE '%" + color + @"%'
+    //                            ORDER BY TRY_CONVERT(DATETIME, CreatedDate) DESC");
+
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    return js.Serialize(Alerts);
+    //}
+
+
     [WebMethod(EnableSession = true)]
-    public string GetFilteredAlerts(string startDate, string endDate, string instanceId)
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string GetFilteredAlerts(string ids, string startDate, string endDate, string instanceId, string color)
     {
-        Dictionary<string, object> data = new Dictionary<string, object>();
+        JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-        List<Dictionary<string, object>> Alerts = SqlDataProvider.ExecuteRowsQuery(@"SELECT   SeverityLevel AS Color,  AlertMatchID AS AlertID, ClientName AS ClientName,    
-                                ClientIP AS ClientIP, PMSIP AS PMSIP,MalwareName AS Malware,                      
-                                MDR_ReceivedDate AS ClientDate,  RecordDate AS AlertDate, IncidentID AS IncidentID  
-                                FROM dbo.Alt_AlertMatchs  WHERE (IncidentID <> " + instanceId + @" OR IncidentID IS NULL)      
-                                AND PadvishServerID=(select PadvishServerID from  Alt_Incidents where IncidentID= " + instanceId + @" )            
-                                AND  TRY_CONVERT(DATETIME, CreatedDate) >  dbo.JalaliToGregorian('" + startDate + @"')           
-                                AND TRY_CONVERT(DATETIME, CreatedDate) <  dbo.JalaliToGregorian('" + endDate + @"')         
-                                ORDER BY TRY_CONVERT(DATETIME, CreatedDate) DESC");
+        // تنظیم طول مجاز برای داده‌های حجیم
+        serializer.MaxJsonLength = Int32.MaxValue;
 
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        return js.Serialize(Alerts);
+        // تبدیل ids به آرایه
+        string[] idArray = new string[0];
+        if (!string.IsNullOrEmpty(ids))
+        {
+            idArray = ids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < idArray.Length; i++)
+                idArray[i] = idArray[i].Trim();
+        }
+
+        int objId = 0;
+        int.TryParse(instanceId, out objId);
+
+        List<string> conditions = new List<string>();
+        conditions.Add("(IncidentID <> " + objId + " OR IncidentID IS NULL)");
+
+        // فیلتر سرور
+        if (idArray.Contains("ThisServer"))
+        {
+            conditions.Add("PadvishServerID = (SELECT PadvishServerID FROM Alt_Incidents WHERE IncidentID = " + objId + ")");
+        }
+
+        // فیلتر مشتری
+        if (idArray.Contains("ThisCustomer"))
+        {
+            conditions.Add(@"PadvishServerID IN (SELECT PadvishServerID FROM Net_PadvishServers WHERE Label = (SELECT Label FROM Net_PadvishServers WHERE PadvishServerID = (SELECT PadvishServerID 
+                FROM Alt_Incidents 
+                WHERE IncidentID = " + objId + @")))");
+        }
+
+
+        // فیلتر زمان: اولویت با ThisWeek
+        bool hasThisWeek = idArray.Contains("ThisWeek");
+        bool hasDateFilter = idArray.Contains("alertDateFilter");
+
+        if (hasThisWeek)
+        {
+            conditions.Add("TRY_CONVERT(DATETIME, CreatedDate) >= DATEADD(DAY, -500, GETDATE())");
+        }
+        else if (hasDateFilter && !string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+        {
+            conditions.Add(string.Format(
+                "TRY_CONVERT(DATETIME, CreatedDate) >= dbo.JalaliToGregorian('{0}') AND " +
+                "TRY_CONVERT(DATETIME, CreatedDate) <= dbo.JalaliToGregorian('{1}')",
+                startDate, endDate));
+        }
+
+        // فیلتر رنگ
+        if (!string.IsNullOrEmpty(color))
+        {
+            conditions.Add("SeverityLevel LIKE '%" + color + "%'");
+        }
+
+        // ساخت شرط نهایی
+        string whereClause = string.Join(" AND ", conditions.ToArray());
+
+        string finalQuery = @"
+        SELECT SeverityLevel AS Color, AlertMatchID AS AlertID, ClientName, ClientIP, PMSIP, MalwareName AS Malware, 
+               MDR_ReceivedDate AS ClientDate, RecordDate AS AlertDate, IncidentID
+        FROM dbo.Alt_AlertMatchs
+        WHERE " + whereClause + @"
+        ORDER BY TRY_CONVERT(DATETIME, CreatedDate) DESC";
+
+        // اجرای کوئری
+        List<Dictionary<string, object>> alerts = SqlDataProvider.ExecuteRowsQuery(finalQuery);
+
+        return serializer.Serialize(alerts);
     }
+
 
     public class AlertData
     {
@@ -354,6 +466,7 @@ public class CustomActivity : System.Web.Services.WebService
         public string Description { get; set; }
         public string SeverityLevel { get; set; }
         public string SupportGroup { get; set; }
+        public string ESID { get; set; }
     }
 
 }

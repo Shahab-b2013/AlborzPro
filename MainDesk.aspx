@@ -417,7 +417,10 @@
     <script type="text/javascript" src="App_Sys/Interface/Gui.Data.js"></script>
     <script type="text/javascript" src="App_Sys/Interface/Gui.js"></script>
     <script type="text/javascript" src="App_Sys/Interface/Components/GridView.js"></script>
-    <script src="App_Sys/Interface/Components/Alert.js"></script>
+    <script src="App_Sys/Interface/Components/Alerts/Alert.js"></script>
+    <script src="App_Sys/Interface/Components/Alerts/AddAlert.js"></script>
+    <script src="App_Sys/Interface/Components/Alerts/MovetoAlert.js"></script>
+    <script src="App_Sys/Interface/Components/Alerts/FilterComponent.js"></script>
     <script src="App_Sys/Interface/Components/Comment.js"></script>
     <script type="text/javascript" src="App_Sys/Interface/Components/IncidentTimeLineView.js"></script>
     <script type="text/javascript" src="App_Sys/Interface/Components/FormView.js"></script>
