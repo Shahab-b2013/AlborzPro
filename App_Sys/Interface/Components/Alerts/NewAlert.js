@@ -1,5 +1,6 @@
- function NewAlertAction()
- {   let modal = `<div class="modal" id="NewAlert" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel">
+function newAlertAction(parentID, _objKey) {
+  $("#newAlertBtn").on("click", function () {
+    let modal = `<div class="modal" id="NewAlert" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel">
             <div class="modal-dialog modal-dialog-scrollable" role="document" style="height: 290px;min-width: 0 !important;width: 500px !important;margin-top: 190px;">
               <div class="modal-content">
 
@@ -26,9 +27,8 @@
                         </div>
                       </div>
 
-                      <span id="Error_NewAlert" class="${
-                        $$Lang == "Fa" ? "pull-right" : "pull-left"
-                      } message-form-error"></span>
+                      <span id="Error_NewAlert" class="${$$Lang == "Fa" ? "pull-right" : "pull-left"
+      } message-form-error"></span>
                     </div>
                   </form>
                 </div>
@@ -200,7 +200,7 @@
       if (!isValid) {
         $(`#Error_NewAlert`).text(
           "Please fill in the following required fields:\n" +
-            missingFields.join(", ")
+          missingFields.join(", ")
         );
         return; // Stop further processing or AJAX submit
       }
@@ -232,5 +232,5 @@
         },
       });
     });
-});
+  });
 }

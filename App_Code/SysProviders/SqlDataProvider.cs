@@ -37,7 +37,10 @@ public class SqlDataProvider
     {
         get
         {
-            return new SqlConnection(@"Data Source=" + ConfigurationManager.AppSettings["DatabaseServer"] + ";Initial Catalog=" + ConfigurationManager.AppSettings["DatabaseName"] + ";User ID=apuser;Password=pbTkWsUnPq1Vhh9RcjDw!57zsUQ2ioDBRLCJZrqH0@9ZSZQ62vBd0NKxFsBjDP#;MultipleActiveResultSets=true;Connection Timeout=0");
+            return new SqlConnection(
+                @"Data Source=" + ConfigurationManager.AppSettings["DatabaseServer"] +
+                ";Initial Catalog=" + ConfigurationManager.AppSettings["DatabaseName"] +
+                ";Integrated Security=True;MultipleActiveResultSets=true;Connection Timeout=0");
         }
     }
 

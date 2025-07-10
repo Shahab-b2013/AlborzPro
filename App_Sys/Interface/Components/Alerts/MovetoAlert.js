@@ -1,4 +1,4 @@
-function moveToAction() {
+function moveToAction(parentID, _objKey) {
   $("#MoveToBtn").on("click", function () {
     let alertList = $(".generalCheckbox:checked")
       .map(function () {

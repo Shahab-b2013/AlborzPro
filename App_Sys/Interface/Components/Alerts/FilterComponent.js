@@ -1,6 +1,7 @@
 var ColorArchive = "";
 var StartdateArchive = "";
 var EnddateArchive = "";
+  let lastInstance = 0;
 function Filter(id, activeBtnIds, _objKey) {
   var startDate = "1300/01/01";
   var endDate;
@@ -244,7 +245,7 @@ function FilterOptBtn(_objKey) {
              </button>
 
               <button type="button" id="ThisServer" 
-              class="btn btn-secondary input-sm custom-input AlertLimited" 
+              class="btn btn-primary input-sm custom-input AlertLimited" 
               data-label="This Server">
               <i class="fa fa-eye-slash" style="font-size:medium;"></i> This Server
               </button>
@@ -257,7 +258,7 @@ function FilterOptBtn(_objKey) {
                </button>
 
                <button type="button" id="ThisWeek" 
-               class="btn btn-secondary input-sm custom-input AlertLimited" 
+               class="btn btn-primary input-sm custom-input AlertLimited" 
                data-label="This Week">
                <i class="fa fa-eye-slash" style="font-size:medium;"></i> This Week
                </button>

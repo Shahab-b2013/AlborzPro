@@ -115,15 +115,12 @@ function Alerts(tmpAlertList, parentID, _objKey) {
             </div>
             <div class="" id="tabItems">
                 <ul class="list-group tableUl">    
-                    <li>  <button type="button" id="newAlertBtn" class="btn btn-sm btnClass  ${
-                      $HistoryIds[_objKey] != 6 ? "" : "hidden"
-                    }" style="margin-left: 5px;" >New</button> 
-                        <button type="button" id="AddToBtn" class="btn btn-sm btnClass  ${
-                          $HistoryIds[_objKey] != 6 ? "" : "hidden"
-                        }">Add</button> 
-                        <button type="button" id="MoveToBtn" class="btn btn-sm btnClass ${
-                          $HistoryIds[_objKey] != 6 ? "" : "hidden"
-                        }">Move To</button> 
+                    <li>  <button type="button" id="newAlertBtn" class="btn btn-sm btnClass  ${$HistoryIds[_objKey] != 6 ? "" : "hidden"
+    }" style="margin-left: 5px;" >New</button> 
+                        <button type="button" id="AddToBtn" class="btn btn-sm btnClass  ${$HistoryIds[_objKey] != 6 ? "" : "hidden"
+    }">Add</button> 
+                        <button type="button" id="MoveToBtn" class="btn btn-sm btnClass ${$HistoryIds[_objKey] != 6 ? "" : "hidden"
+    }">Move To</button> 
                         <button type="button" id="expandAllBtn" class="btn btn-sm btnClass">Expand All</button  > 
                         <input type="text" id="alertsInput" onkeyup="SearchFNC('alertsInput' , alertTable)" placeholder="Search ..." title="Search from Table" style="width: 150px;font-size: 13px;margin: 0 5px;float: right;height: 29px;" class="form-control input-sm custom-input"> 
                     </li>      
@@ -140,16 +137,13 @@ function Alerts(tmpAlertList, parentID, _objKey) {
     $(".generalCheckbox").prop("checked", this.checked);
   });
 
-  NewAlertAction()
 
-  let lastInstance = 0;
-
-  
-
+  //New Action
+  newAlertAction(parentID, _objKey)
   //Add Action
-  addAction(parentID,_objKey);
+  addAction(parentID, _objKey);
   //Move Action
-  moveToAction(parentID,_objKey);
+  moveToAction(parentID, _objKey);
 
   $("#expandAllBtn").click(function () {
     const isExpanding = $(this).text().trim() === "Expand All";
@@ -221,15 +215,15 @@ function AlertTbl(MessageMergeTo) {
       pagedData.length > 0
         ? pagedData
         : [
-            {
-              AlertID: 0,
-              ClientName: "",
-              ClientIP: "",
-              Malware: "",
-              ClientDate: "",
-              AlertDate: "",
-            },
-          ];
+          {
+            AlertID: 0,
+            ClientName: "",
+            ClientIP: "",
+            Malware: "",
+            ClientDate: "",
+            AlertDate: "",
+          },
+        ];
 
     for (const key in thList[0]) {
       if (!["ObjKey", "requestDate", "requestToken", "Color"].includes(key)) {
@@ -266,11 +260,10 @@ function AlertTbl(MessageMergeTo) {
             </td>`;
           } else {
             let tmpStr = item[key];
-            strAlertTd += `<td class="ellipsis">${
-              typeof tmpStr === "string" && tmpStr.includes("/Date(")
+            strAlertTd += `<td class="ellipsis">${typeof tmpStr === "string" && tmpStr.includes("/Date(")
                 ? hasDateInStr(tmpStr)
                 : tmpStr
-            }</td>`;
+              }</td>`;
           }
         }
       }
@@ -299,9 +292,8 @@ function AlertTbl(MessageMergeTo) {
     let paginationHtml = "";
 
     // Prev button
-    paginationHtml += `<button class="page-btn" data-page="${
-      currentPage - 1
-    }" ${currentPage === 1 ? "disabled" : ""}>Prev</button>`;
+    paginationHtml += `<button class="page-btn" data-page="${currentPage - 1
+      }" ${currentPage === 1 ? "disabled" : ""}>Prev</button>`;
 
     const maxButtons = 7;
     let startPage, endPage;
@@ -326,9 +318,8 @@ function AlertTbl(MessageMergeTo) {
 
     // Show first page if not in loop
     if (startPage > 1) {
-      paginationHtml += `<button class="page-btn ${
-        currentPage === 1 ? "active" : ""
-      }" data-page="1">1</button>`;
+      paginationHtml += `<button class="page-btn ${currentPage === 1 ? "active" : ""
+        }" data-page="1">1</button>`;
     }
 
     if (startPage > 2) {
@@ -337,9 +328,8 @@ function AlertTbl(MessageMergeTo) {
 
     // Pages in middle
     for (let i = startPage; i <= endPage; i++) {
-      paginationHtml += `<button class="page-btn ${
-        i === currentPage ? "active" : ""
-      }" data-page="${i}">${i}</button>`;
+      paginationHtml += `<button class="page-btn ${i === currentPage ? "active" : ""
+        }" data-page="${i}">${i}</button>`;
     }
 
     // Ellipsis before last page
@@ -349,15 +339,13 @@ function AlertTbl(MessageMergeTo) {
 
     // Show last page if not in loop
     if (endPage < totalPages) {
-      paginationHtml += `<button class="page-btn ${
-        currentPage === totalPages ? "active" : ""
-      }" data-page="${totalPages}">${totalPages}</button>`;
+      paginationHtml += `<button class="page-btn ${currentPage === totalPages ? "active" : ""
+        }" data-page="${totalPages}">${totalPages}</button>`;
     }
 
     // Next button
-    paginationHtml += `<button class="page-btn" data-page="${
-      currentPage + 1
-    }" ${currentPage === totalPages ? "disabled" : ""}>Next</button>`;
+    paginationHtml += `<button class="page-btn" data-page="${currentPage + 1
+      }" ${currentPage === totalPages ? "disabled" : ""}>Next</button>`;
 
     $("#pagination").remove();
     $("#alertTBL").append(
