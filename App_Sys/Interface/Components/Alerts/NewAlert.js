@@ -50,119 +50,12 @@ function newAlertAction(parentID, _objKey) {
 
     $(`#NewAlert`).show();
 
-    // Fetch form items
-
-    // _data = new aData(6220005, null, null, "");
-    // let data = _data.getList();
-    // // Sort by RowIndex first (if you want, otherwise just by RowIndex)
-    // data.sort((a, b) => a.RowIndex - b.RowIndex);
-
-    // data.forEach((item) => {
-    //   const label = $$Lang == "Fa" ? item.Label : item.Name;
-    //   const dir = $$Lang == "Fa" ? "rtl" : "ltr";
-    //   const container =
-    //     item.ColumnIndex == 0
-    //       ? $("#form-group-body-text-input-left")
-    //       : $("#form-group-body-text-input-right");
-
-    //   let inputHTML = `
-    //       <label for="${item.Name}" class="control-label" style="margin-bottom: 5px;color: #6a7a8c;font-family: 'IRANSansWeb' !important;">
-    //         ${label}
-    //       </label>
-    //       <div class="input-group" style="margin-bottom: 15px;">
-    //         <div class="input-group-addon">
-    //           <i class="glyphicon glyphicon-edit"></i>
-    //         </div>`;
-    //   if (item.Name === "SupportGroup") {
-    //     inputHTML += `<select id="${item.Name}" class="select2 form-input form-control ">
-    //                       <option class="bs-title-option" value="">Optional</option>
-    //                       <option value="Forensic">Forensic (Alert Analysis)</option>
-    //                       <option value="ServiceDesk">ServiceDesk (Remote Request)</option>
-    //                     </select>`;
-    //   } else if (item.Name === "SeverityLevel") {
-    //     inputHTML += `<select id="${item.Name}" class="select2 form-input form-control ">
-    //               <option value="YellowAlert" Selected>Yellow Alert</option>
-    //               <option value="OrangeAlert" Selected>Orange Alert</option>
-    //               <option value="RedAlert" Selected>Red Alert</option>
-    //               <option value="BlackAlert" Selected>Black Alert</option>
-    //           </select>`;
-    //   } else if (item.Name === "EventDate") {
-    //     inputHTML += `
-    //       <input
-    //         type="text"
-    //         class="form-control form-input"
-    //         id="${item.Name}"
-    //         data-mdpersiandatetimepickershowing="true"
-    //         title=""
-    //         data-original-title=""
-    //         data-mdpersiandatetimepicker=""
-    //         data-mddatetimepicker="true"
-    //         data-targetselector="#${item.Name}"
-    //         data-trigger="click"
-    //         data-placement="top"
-    //         data-englishnumber="true"
-    //         dir="ltr"
-    //         data-enabletimepicker="true"
-    //         data-inputmask='"mask": "x/m/d h:s"'
-    //         style="text-align: left;"
-    //         aria-describedby="popover877868"
-    //       />`;
-    //   } else if (item.Name === "Description") {
-    //     inputHTML += `
-    //         <textarea style="width: 751px;height: 84px;"
-    //           class="form-control form-input"
-    //           id="${item.Name}"
-    //           dir="${dir}"
-    //           ${item.IsReadOnly == "True" ? "readonly" : ""}
-    //         ></textarea>`;
-    //   } else if (item.Name === "PadvishServerID") {
-    //     inputHTML += `<select id="${item.Name}" class="select2 form-input form-control ">`;
-    //     _data = new aData(6220006, null, null, "");
-    //     let data = _data.getList();
-    //     data.forEach((server) => {
-    //       inputHTML += `<option value="${server.PadvishServerID}" Selected>${server.Label}</option>`;
-    //     });
-
-    //     inputHTML += `</select>`;
-    //   } else if (item.Name === "AlertQueryID") {
-    //     inputHTML += `<select id="${item.Name}" class="select2 form-input form-control ">`;
-    //     _data = new aData(6220007, null, null, "");
-    //     let data = _data.getList();
-    //     data.forEach((query) => {
-    //       inputHTML += `<option value="${query.AlertQueryID}" Selected>${query.Label}</option>`;
-    //     });
-    //     inputHTML += `</select>`;
-    //   } else {
-    //     inputHTML += `
-    //         <input
-    //           type="text"
-    //           class="form-control form-input"
-    //           id="${item.Name}"
-    //           dir="${dir}"
-    //           ${item.IsReadOnly == "True" ? "readonly" : ""}
-    //         />`;
-    //   }
-
-    //   inputHTML += `</div>`;
-    //   container.append(inputHTML);
-    // });
-
-    // // Initialize date pickers and input masks after inputs added
-    // $(".select2").select2();
-    // EnableMdDateTimePickers();
-    // $("[data-inputmask]").inputmask();
-    // // Handle cancel button
-    // // $(document)
-    // //   .off("click", `#cancel_${modalID}`)
-
     $(`#cancel_NewAlert`).on("click", function () {
       $(`#NewAlert`).hide();
       $(`#NewAlert`).remove();
     });
 
-    // Handle Submit button click - collect all inputs to JSON
-    // $(document)
-    //   .off("click", `#submit_${modalID}`)
+  
     $(`#submit_NewAlert`).on("click", function () {
       const formID = `#Form_NewAlert`;
       let formData = {};

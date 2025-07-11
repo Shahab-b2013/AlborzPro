@@ -302,7 +302,7 @@ function FilterOptBtn(_mode, _objKey) {
     const isViewAll = label === "View All";
 
     if (isViewAll) {
-      // ❗ غیرفعال‌سازی همه دکمه‌ها به جز View All
+   
       $(".AlertLimited").each(function () {
         const $otherBtn = $(this);
         const otherLabel = $otherBtn.data("label");
@@ -315,17 +315,17 @@ function FilterOptBtn(_mode, _objKey) {
         }
       });
 
-      // فعال‌سازی View All
+      
       $btn.removeClass("btn-secondary").addClass("btn-primary");
       $btn.html(`<i class="fa fa-eye" style="font-size: medium"></i> ${label}`);
 
-      // پاک‌سازی فیلتر و سرچ
+   
       if ($("#alertDate").length) {
         $("#alertStartDate, #alertEndDate").val("").text("");
       }
       $("#searchBtn").val("");
 
-      // ✅ فقط اجرای aData برای View All
+     
       $loading.show();
 
 
@@ -355,34 +355,12 @@ function FilterOptBtn(_mode, _objKey) {
         },
       });
 
-      // let queryCode;
-      // ? queryCode = 6220010 :
-      //   queryCode = 6220009;
+      
 
-
-
-      // const AlertLimitedPromise = new Promise((resolve, reject) => {
-      //   _data = new aData(queryCode, null, _objKey, "", true);
-      //   let timer = setInterval(() => {
-      //     let value = _data.getList();
-      //     if (value && value.length > 0) {
-      //       clearInterval(timer);
-      //       resolve(value);
-      //     }
-      //   }, 1);
-      // });
-
-      // AlertLimitedPromise.then((val) => {
-      // $loading.hide();
-      // $("#MessageTable").remove();
-      // (_mode == "MoveTo") ? MoveToTbl(val) :
-      //   AlertTbl(val);
-      // });
-
-      return; // پایان حالت View All
+      return;
     }
 
-    // Toggle دکمه‌های غیر View All
+
     const isActive = $btn.hasClass("btn-primary");
 
     if (isActive) {
@@ -395,14 +373,13 @@ function FilterOptBtn(_mode, _objKey) {
       $btn.html(`<i class="fa fa-eye" style="font-size: medium"></i> ${label}`);
     }
 
-    // ❗ غیرفعال کردن View All
     const $viewAllBtn = $(".AlertLimited[data-label='View All']");
     $viewAllBtn.removeClass("btn-primary").addClass("btn-secondary");
     $viewAllBtn.html(
       `<i class="fa fa-eye-slash" style="font-size: medium"></i> View All`
     );
 
-    // ✅ اجرای Filter با دکمه‌های فعال غیر از View All
+
     const activeBtnIds = $(".AlertLimited.btn-primary")
       .not("[data-label='View All']")
       .map(function () {
