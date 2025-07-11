@@ -365,7 +365,7 @@ public class CustomActivity : System.Web.Services.WebService
 
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string GetFilteredAlerts(string ids, string startDate, string endDate, string instanceId, string color)
+    public string GetFiltered(string ids, string startDate, string endDate, string instanceId, string color, string mode)
     {
         JavaScriptSerializer serializer = new JavaScriptSerializer();
 
@@ -387,57 +387,121 @@ public class CustomActivity : System.Web.Services.WebService
         List<string> conditions = new List<string>();
         conditions.Add("(IncidentID <> " + objId + " OR IncidentID IS NULL)");
 
-        // فیلتر سرور
-        if (idArray.Contains("ThisServer"))
-        {
-            conditions.Add("PadvishServerID = (SELECT PadvishServerID FROM Alt_Incidents WHERE IncidentID = " + objId + ")");
-        }
+        string finalQuery = string.Empty;
 
-        // فیلتر مشتری
-        if (idArray.Contains("ThisCustomer"))
+        try
         {
-            conditions.Add(@"PadvishServerID IN (SELECT PadvishServerID FROM Net_PadvishServers WHERE Label = (SELECT Label FROM Net_PadvishServers WHERE PadvishServerID = (SELECT PadvishServerID 
+            if (mode == "Add")
+            {
+                // فیلتر سرور
+                if (idArray.Contains("ThisServer"))
+                {
+                    conditions.Add("PadvishServerID = (SELECT PadvishServerID FROM Alt_Incidents WHERE IncidentID = " + objId + ")");
+                }
+
+                // فیلتر مشتری
+                if (idArray.Contains("ThisCustomer"))
+                {
+                    conditions.Add(@"PadvishServerID IN (SELECT PadvishServerID FROM Net_PadvishServers WHERE Label = (SELECT Label FROM Net_PadvishServers WHERE PadvishServerID = (SELECT PadvishServerID 
                 FROM Alt_Incidents 
                 WHERE IncidentID = " + objId + @")))");
+                }
+
+                // فیلتر زمان: اولویت با ThisWeek
+                bool hasThisWeek = idArray.Contains("ThisWeek");
+                bool hasDateFilter = idArray.Contains("alertDateFilter");
+
+                if (hasThisWeek)
+                {
+                    conditions.Add("TRY_CONVERT(DATETIME, CreatedDate) >= DATEADD(DAY, -500, GETDATE())");
+                }
+                else if (hasDateFilter && !string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+                {
+                    conditions.Add(string.Format(
+                        "TRY_CONVERT(DATETIME, CreatedDate) >= dbo.JalaliToGregorian('{0}') AND " +
+                        "TRY_CONVERT(DATETIME, CreatedDate) <= dbo.JalaliToGregorian('{1}')",
+                        startDate, endDate));
+                }
+
+                // فیلتر رنگ
+                if (!string.IsNullOrEmpty(color))
+                {
+                    conditions.Add("SeverityLevel LIKE '%" + color + "%'");
+                }
+
+                // ساخت شرط نهایی
+                string whereClause = string.Join(" AND ", conditions.ToArray());
+
+                finalQuery = @"
+            SELECT SeverityLevel AS Color, AlertMatchID AS AlertID, ClientName, ClientIP, PMSIP, MalwareName AS Malware, 
+                   MDR_ReceivedDate AS ClientDate, RecordDate AS AlertDate, IncidentID
+            FROM dbo.Alt_AlertMatchs
+            WHERE " + whereClause + @"
+            ORDER BY TRY_CONVERT(DATETIME, CreatedDate) DESC";
+            }
+            else if (mode == "MoveTo")
+            {
+                if (idArray.Contains("ThisServer"))
+                {
+                    conditions.Add("PadvishServerID = (SELECT PadvishServerID FROM Alt_Incidents WHERE IncidentID = " + objId + ")");
+                }
+
+                // فیلتر مشتری
+                if (idArray.Contains("ThisCustomer"))
+                {
+                    conditions.Add(@"PadvishServerID IN (SELECT PadvishServerID FROM Net_PadvishServers WHERE Label = (SELECT Label FROM Net_PadvishServers WHERE PadvishServerID = (SELECT PadvishServerID 
+                FROM Alt_Incidents 
+                WHERE IncidentID = " + objId + ")))");
+                }
+
+                // فیلتر زمان: اولویت با ThisWeek
+                bool hasThisWeek = idArray.Contains("ThisWeek");
+                bool hasDateFilter = idArray.Contains("alertDateFilter");
+
+                if (hasThisWeek)
+                {
+                    conditions.Add("CreateDate > DATEADD(DAY, -500, GETDATE())");
+                }
+                else if (hasDateFilter && !string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+                {
+                    conditions.Add(string.Format(
+                        "TRY_CONVERT(DATETIME, CreateDate) >= dbo.JalaliToGregorian('{0}') AND " +
+                        "TRY_CONVERT(DATETIME, CreateDate) <= dbo.JalaliToGregorian('{1}')",
+                        startDate, endDate));
+                }
+
+                // فیلتر رنگ
+                if (!string.IsNullOrEmpty(color))
+                {
+                    conditions.Add("Color LIKE '%" + color + "%'");
+                }
+
+                // ساخت شرط نهایی
+                string whereClause = string.Join(" AND ", conditions.ToArray());
+
+                finalQuery = @"
+            SELECT Color AS Color,
+                   IncidentID AS IncidentID,
+                   CreateDate AS RecordDate,
+                   (SELECT Label FROM Net_PadvishServers WHERE PadvishServerID = Alt_Incidents.PadvishServerID) AS Customer,
+                   PMSIP AS PMSIP,
+                   Detections AS Detections,
+                   Status AS Status
+            FROM Alt_Incidents
+            WHERE " + whereClause + @"
+            ORDER BY TRY_CONVERT(DATETIME, CreateDate) DESC";
+            }
+
+            // اجرای کوئری
+            List<Dictionary<string, object>> alerts = SqlDataProvider.ExecuteRowsQuery(finalQuery);
+
+            return serializer.Serialize(alerts);
         }
-
-
-        // فیلتر زمان: اولویت با ThisWeek
-        bool hasThisWeek = idArray.Contains("ThisWeek");
-        bool hasDateFilter = idArray.Contains("alertDateFilter");
-
-        if (hasThisWeek)
+        catch (Exception ex)
         {
-            conditions.Add("TRY_CONVERT(DATETIME, CreatedDate) >= DATEADD(DAY, -500, GETDATE())");
+            // مدیریت خطا
+            return "{\"error\": \"" + ex.Message + "\"}";
         }
-        else if (hasDateFilter && !string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
-        {
-            conditions.Add(string.Format(
-                "TRY_CONVERT(DATETIME, CreatedDate) >= dbo.JalaliToGregorian('{0}') AND " +
-                "TRY_CONVERT(DATETIME, CreatedDate) <= dbo.JalaliToGregorian('{1}')",
-                startDate, endDate));
-        }
-
-        // فیلتر رنگ
-        if (!string.IsNullOrEmpty(color))
-        {
-            conditions.Add("SeverityLevel LIKE '%" + color + "%'");
-        }
-
-        // ساخت شرط نهایی
-        string whereClause = string.Join(" AND ", conditions.ToArray());
-
-        string finalQuery = @"
-        SELECT SeverityLevel AS Color, AlertMatchID AS AlertID, ClientName, ClientIP, PMSIP, MalwareName AS Malware, 
-               MDR_ReceivedDate AS ClientDate, RecordDate AS AlertDate, IncidentID
-        FROM dbo.Alt_AlertMatchs
-        WHERE " + whereClause + @"
-        ORDER BY TRY_CONVERT(DATETIME, CreatedDate) DESC";
-
-        // اجرای کوئری
-        List<Dictionary<string, object>> alerts = SqlDataProvider.ExecuteRowsQuery(finalQuery);
-
-        return serializer.Serialize(alerts);
     }
 
 

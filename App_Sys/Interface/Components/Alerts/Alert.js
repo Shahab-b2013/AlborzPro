@@ -45,8 +45,8 @@ function Alerts(tmpAlertList, parentID, _objKey) {
     tmpColor = data.Color;
   }
 
-  let strAlertTh = "";
-  let strAlertTd = "";
+  let strTh = "";
+  let strTd = "";
   tmpColor === "Yellow"
     ? "text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;"
     : "";
@@ -56,9 +56,9 @@ function Alerts(tmpAlertList, parentID, _objKey) {
   for (const key in tmpAlertList[0]) {
     if (key != "ObjKey" && key != "requestDate" && key != "requestToken") {
       if (key == "Color") {
-        strAlertTh += `<th style="width: 150px;"><input id="Allalert" type="checkbox" style="display: flex;text-align: left;margin-left: 20px;cursor:pointer" ></th>`;
+        strTh += `<th style="width: 150px;"><input id="Allalert" type="checkbox" style="display: flex;text-align: left;margin-left: 20px;cursor:pointer" ></th>`;
       } else {
-        strAlertTh += `<th>${key}</th>`;
+        strTh += `<th>${key}</th>`;
       }
     }
   }
@@ -83,7 +83,7 @@ function Alerts(tmpAlertList, parentID, _objKey) {
             AlertColor = "AttentionFlag22";
           }
 
-          strAlertTd += `<tr  class="trHover">
+          strTd += `<tr  class="trHover">
                 <td style="color:${tmpPenColor}"> 
                 <div class="alertItemDiv">
                 <input type="checkbox" id="generalCheckbox_${indexId}" class="generalCheckbox"/>
@@ -94,16 +94,16 @@ function Alerts(tmpAlertList, parentID, _objKey) {
         } else {
           let tmpStr = item[key];
           if (typeof tmpStr === "string" && tmpStr.includes("/Date("))
-            strAlertTd += `<td class="ellipsis">${hasDateInStr(tmpStr)}</td>`;
-          else strAlertTd += `<td class="ellipsis">${tmpStr}</td>`;
+            strTd += `<td class="ellipsis">${hasDateInStr(tmpStr)}</td>`;
+          else strTd += `<td class="ellipsis">${tmpStr}</td>`;
         }
       }
     }
-    strAlertTd += "</tr>";
-    strAlertTd += `<tr class="hidden"><td colspan="8" id="generalDetails_${indexId}" class="AlertDetails"></td></tr>`;
+    strTd += "</tr>";
+    strTd += `<tr class="hidden"><td colspan="8" id="generalDetails_${indexId}" class="AlertDetails"></td></tr>`;
   });
 
-  let strAlertTbl = `<table id="alertTable" class="table-bordered gridList incidentTable"><tr>${strAlertTh}</tr>${strAlertTd}</table>`;
+  let strAlertTbl = `<table id="alertTable" class="table-bordered gridList incidentTable"><tr>${strTh}</tr>${strTd}</table>`;
 
   let _alert = `
         <div class="alertListDiv">
@@ -207,34 +207,43 @@ function AlertTbl(MessageMergeTo) {
     let end = start + rowsPerPage;
     let pagedData = filteredData.slice(start, end);
 
-    let strMessageTh = `<th scope="row">
+    let strTh = `<th scope="row">
       <input id="selectAll" type="checkbox" style="display: flex;text-align: left;margin: 4px 0px 0px 25px;cursor:pointer"/>
     </th>`;
 
-    let thList =
-      pagedData.length > 0
-        ? pagedData
-        : [
-          {
-            AlertID: 0,
-            ClientName: "",
-            ClientIP: "",
-            Malware: "",
-            ClientDate: "",
-            AlertDate: "",
-          },
-        ];
 
-    for (const key in thList[0]) {
-      if (!["ObjKey", "requestDate", "requestToken", "Color"].includes(key)) {
-        strMessageTh += `<th>${key}</th>`;
+    let thList = [
+      {
+        AlertID: 0,
+        ClientName: "",
+        ClientIP: "",
+        Malware: "",
+        ClientDate: "",
+        AlertDate: "",
+      },
+    ];
+
+    if (pagedData.length > 0) {
+      if (pagedData[0]["AlertID"]) {
+        thList = pagedData
       }
     }
 
-    let strAlertTd = "";
+
+
+
+
+
+    for (const key in thList[0]) {
+      if (!["ObjKey", "requestDate", "requestToken", "Color"].includes(key)) {
+        strTh += `<th>${key}</th>`;
+      }
+    }
+
+    let strTd = "";
     pagedData.forEach((item) => {
       let indexId = item["AlertID"];
-      strAlertTd += `<tr class="trHover">`;
+      strTd += `<tr class="trHover">`;
 
       for (const key in item) {
         if (!["ObjKey", "requestDate", "requestToken"].includes(key)) {
@@ -250,7 +259,7 @@ function AlertTbl(MessageMergeTo) {
 
             let tmpPenColor = raw === "Yellow" ? "Black" : "White";
 
-            strAlertTd += `<td style="color:${tmpPenColor}">
+            strTd += `<td style="color:${tmpPenColor}">
               <div class="alertItemDiv">
                 <input type="checkbox" id="mergeCheckbox_${indexId}" class="mergeCheckbox" style="margin-left:0px;margin-right:5px;" />
                 <i id="DetailBtn_${indexId}" class="expand-collapse-btn glyphicon glyphicon-plus details-control btn-grid"
@@ -260,24 +269,221 @@ function AlertTbl(MessageMergeTo) {
             </td>`;
           } else {
             let tmpStr = item[key];
-            strAlertTd += `<td class="ellipsis">${typeof tmpStr === "string" && tmpStr.includes("/Date(")
-                ? hasDateInStr(tmpStr)
-                : tmpStr
+            strTd += `<td class="ellipsis">${typeof tmpStr === "string" && tmpStr.includes("/Date(")
+              ? hasDateInStr(tmpStr)
+              : tmpStr
               }</td>`;
           }
         }
       }
 
-      strAlertTd += `</tr><tr class="hidden"><td colspan="10" id="Details_${indexId}" class="AlertDetails"></td></tr>`;
+      strTd += `</tr><tr class="hidden"><td colspan="10" id="Details_${indexId}" class="AlertDetails"></td></tr>`;
     });
 
     let tableHTML = `<table id="MessageTable" class="table-bordered gridList incidentTable">
-      <tr>${strMessageTh}</tr>${strAlertTd}</table>`;
+      <tr>${strTh}</tr>${strTd}</table>`;
 
     $("#alertTBL").append(tableHTML);
     $("#selectAll").on("change", function () {
       $(".mergeCheckbox").prop("checked", this.checked);
     });
+
+    renderPagination(filteredData);
+  }
+
+  function renderPagination(filteredData) {
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+    if (totalPages <= 1) {
+      $("#pagination").remove();
+      return;
+    }
+
+    let paginationHtml = "";
+
+    // Prev button
+    paginationHtml += `<button class="page-btn" data-page="${currentPage - 1
+      }" ${currentPage === 1 ? "disabled" : ""}>Prev</button>`;
+
+    const maxButtons = 7;
+    let startPage, endPage;
+
+    if (totalPages <= maxButtons) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      const middleButtons = maxButtons - 2;
+      startPage = currentPage - Math.floor(middleButtons / 2);
+      endPage = currentPage + Math.floor(middleButtons / 2);
+
+      if (startPage < 2) {
+        startPage = 2;
+        endPage = startPage + middleButtons - 1;
+      }
+      if (endPage > totalPages - 1) {
+        endPage = totalPages - 1;
+        startPage = endPage - middleButtons + 1;
+      }
+    }
+
+    // Show first page if not in loop
+    if (startPage > 1) {
+      paginationHtml += `<button class="page-btn ${currentPage === 1 ? "active" : ""
+        }" data-page="1">1</button>`;
+    }
+
+    if (startPage > 2) {
+      paginationHtml += `<span style="padding: 5px 10px;">...</span>`;
+    }
+
+    // Pages in middle
+    for (let i = startPage; i <= endPage; i++) {
+      paginationHtml += `<button class="page-btn ${i === currentPage ? "active" : ""
+        }" data-page="${i}">${i}</button>`;
+    }
+
+    // Ellipsis before last page
+    if (endPage < totalPages - 1) {
+      paginationHtml += `<span style="padding: 5px 10px;">...</span>`;
+    }
+
+    // Show last page if not in loop
+    if (endPage < totalPages) {
+      paginationHtml += `<button class="page-btn ${currentPage === totalPages ? "active" : ""
+        }" data-page="${totalPages}">${totalPages}</button>`;
+    }
+
+    // Next button
+    paginationHtml += `<button class="page-btn" data-page="${currentPage + 1
+      }" ${currentPage === totalPages ? "disabled" : ""}>Next</button>`;
+
+    $("#pagination").remove();
+    $("#alertTBL").append(
+      `<div id="pagination" class="pagination">${paginationHtml}</div>`
+    );
+
+    $(".page-btn").click(function () {
+      const targetPage = parseInt($(this).data("page"));
+      if (targetPage >= 1 && targetPage <= totalPages) {
+        currentPage = targetPage;
+        renderTablePage(currentPage, getFilteredData());
+        renderPagination(getFilteredData());
+      }
+    });
+  }
+
+  $("#searchBtn")
+    .off("keyup")
+    .on("keyup", function () {
+      searchQuery = $(this).val();
+      currentPage = 1;
+      renderTablePage(currentPage, getFilteredData());
+    });
+
+  $("#rowsPerPageSelect")
+    .off("change")
+    .on("change", function () {
+      rowsPerPage = parseInt($(this).val());
+      currentPage = 1;
+      renderTablePage(currentPage, getFilteredData());
+    });
+
+  renderTablePage(currentPage, getFilteredData());
+  $("#alertModal").css("display", "block");
+}
+
+function MoveToTbl(MessageMergeTo) {
+
+  let rowsPerPage = parseInt($("#rowsPerPageSelect").val()) || 10;
+  let currentPage = 1;
+  let searchQuery = "";
+
+  function getFilteredData() {
+    return MessageMergeTo.filter((item) => {
+      return Object.values(item).some(
+        (val) =>
+          val &&
+          val.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    });
+  }
+
+  function renderTablePage(page, filteredData) {
+    $("#alertTBL").empty();
+    let start = (page - 1) * rowsPerPage;
+    let end = start + rowsPerPage;
+    let pagedData = filteredData.slice(start, end);
+
+
+
+    let strTh = `<th scope="row"> </th><th scope="row"> </th>`;
+
+    let thList = [
+      {
+        IncidentID: 0,
+        RecordDate: "",
+        Customer: "",
+        PMSIP: "",
+        Detections: "",
+        Status: "",
+      },
+    ];
+
+    if (pagedData.length > 0) {
+      if (pagedData[0]["IncidentID"]) {
+        thList = pagedData
+      }
+    }
+
+
+    for (const key in thList[0]) {
+      if (!["ObjKey", "requestDate", "requestToken", "Color"].includes(key)) {
+        strTh += `<th>${key}</th>`;
+      }
+    }
+
+    let strTd = "";
+    pagedData.forEach((item) => {
+      let indexId = item["IncidentID"];
+      strTd += `<tr class="trHover"><td><input type="radio" id="unmergeRadio_${indexId}" name="incidentRadio" class="unmergeRadio"></td>`;
+
+      for (const key in item) {
+        if (
+          key != "ObjKey" &&
+          key != "requestDate" &&
+          key != "requestToken"
+        ) {
+          if (key == "Color") {
+            let IncidentColor = "";
+            if (item[key].replaceAll("Alert", "") == "Yellow") {
+              IncidentColor = "AttentionFlag15";
+            } else if (item[key].replaceAll("Alert", "") == "Orange") {
+              IncidentColor = "AttentionFlag16";
+            } else if (item[key].replaceAll("Alert", "") == "Red") {
+              IncidentColor = "AttentionFlag17";
+            } else if (item[key].replaceAll("Alert", "") == "Black") {
+              IncidentColor = "AttentionFlag18";
+            }
+
+            strTd += `<td><img src="App_Res/Images/Page/24/${IncidentColor}.png" style="width:35px; height:50px"> </td>`;
+          } else {
+            let tmpStr = item[key];
+            if (typeof tmpStr === "string" && tmpStr.includes("/Date("))
+              strTd += `<td class="ellipsis">${hasDateInStr(
+                tmpStr
+              )}</td>`;
+            else strTd += `<td class="ellipsis">${tmpStr}</td>`;
+          }
+        }
+      }
+
+      strTd += `</tr>`;
+    });
+
+    let incidentTbl = `<table id="MessageTable" class="table-bordered gridList incidentTable"><tr>${strTh}</tr>${strTd}</table>`;
+
+    $("#alertTBL").append(incidentTbl);
+
+
 
     renderPagination(filteredData);
   }

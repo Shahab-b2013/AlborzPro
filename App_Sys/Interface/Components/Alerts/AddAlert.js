@@ -19,7 +19,7 @@ function addAction(parentID, _objKey) {
     promise.then((val) => {
       $loading.hide();
 
-      FilterOptBtn(_objKey);
+      FilterOptBtn("Add",_objKey);
 
       AlertTbl(val);
 

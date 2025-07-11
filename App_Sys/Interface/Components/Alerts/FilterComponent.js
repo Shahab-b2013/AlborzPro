@@ -1,13 +1,14 @@
 var ColorArchive = "";
 var StartdateArchive = "";
 var EnddateArchive = "";
-  let lastInstance = 0;
-function Filter(id, activeBtnIds, _objKey) {
+let lastInstance = 0;
+function Filter(id, activeBtnIds, _objKey, _mode) {
+
   var startDate = "1300/01/01";
   var endDate;
   var color;
 
-  if (id == "alertDateFilter") {
+  if (id == "alertDateFilter" && $(`#alertDateFilter`).hasClass('btn-primary')) {
     if ($(`#alertDate`).length) {
       if ($(this).attr("instanceId") !== lastInstance) {
         $("#alertStartDate, #alertEndDate").val("").text("");
@@ -105,9 +106,8 @@ function Filter(id, activeBtnIds, _objKey) {
                         </div>
                       </div>
 
-                      <span id="Error_alertDate" class="${
-                        $$Lang == "Fa" ? "pull-right" : "pull-left"
-                      } message-form-error"></span>
+                      <span id="Error_alertDate" class="${$$Lang == "Fa" ? "pull-right" : "pull-left"
+        } message-form-error"></span>
                     </div>
                   </form>
                 </div>
@@ -136,6 +136,7 @@ function Filter(id, activeBtnIds, _objKey) {
       .off("click")
       .on("click", function () {
         $(`#searchBtn`).val("");
+
         startDate = $(`#alertStartDate`).val();
         endDate = $(`#alertEndDate`).val();
         color = $(`#alertColorFilter`).val();
@@ -150,23 +151,27 @@ function Filter(id, activeBtnIds, _objKey) {
         }
 
         $loading.show();
+
         $.ajax({
           type: "POST",
-          url: "../../App_Sys/Services/CustomActivity.asmx/GetFilteredAlerts",
+          url: "../../App_Sys/Services/CustomActivity.asmx/GetFiltered",
           data: JSON.stringify({
             ids: activeBtnIds.join(","),
-            startDate: startDate,
-            endDate: endDate,
+            startDate: StartdateArchive,
+            endDate: EnddateArchive,
             instanceId: _objKey.toString(),
-            color: color,
+            color: ColorArchive,
+            mode: _mode,
           }),
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           success: function (response) {
-            let alerts = JSON.parse(response.d);
-            $("#MessageTable").remove();
-            AlertTbl(alerts);
+            let val = JSON.parse(response.d);
+
             $("#alertDate").hide();
+            $("#MessageTable").remove();
+            _mode == "MoveTo" ? MoveToTbl(val) :
+              AlertTbl(val);
             $loading.hide();
           },
           error: function (jqXHR, textStatus, errorThrown) {
@@ -181,15 +186,13 @@ function Filter(id, activeBtnIds, _objKey) {
       .on("click", function () {
         $(`#alertDate`).hide();
         $(`#alertDate`).remove();
+        $(`#alertDateFilter`).removeClass("btn-primary").addClass("btn-secondary");
       });
   } else {
     $loading.show();
-    console.log(ColorArchive);
-    console.log(StartdateArchive);
-    console.log(EnddateArchive);
     $.ajax({
       type: "POST",
-      url: "../../App_Sys/Services/CustomActivity.asmx/GetFilteredAlerts",
+      url: "../../App_Sys/Services/CustomActivity.asmx/GetFiltered",
       data: JSON.stringify({
         ids: activeBtnIds.join(","),
         startDate: activeBtnIds.includes("alertDateFilter")
@@ -198,13 +201,15 @@ function Filter(id, activeBtnIds, _objKey) {
         endDate: activeBtnIds.includes("alertDateFilter") ? EnddateArchive : "",
         instanceId: _objKey.toString(),
         color: activeBtnIds.includes("alertDateFilter") ? ColorArchive : "",
+        mode: _mode,
       }),
       async: true,
       contentType: "application/json; charset=utf-8",
       success: function (response) {
-        let alerts = JSON.parse(response.d);
+        let val = JSON.parse(response.d);
         $(`#MessageTable`).remove();
-        AlertTbl(alerts);
+        _mode == "MoveTo" ? MoveToTbl(val) :
+          AlertTbl(val);
         $loading.hide();
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -214,7 +219,7 @@ function Filter(id, activeBtnIds, _objKey) {
   }
 }
 
-function FilterOptBtn(_objKey) {
+function FilterOptBtn(_mode, _objKey) {
   const Modal = `
     <div class="modal" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel">
       <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -282,7 +287,7 @@ function FilterOptBtn(_objKey) {
           </div>
           <div class="modal-footer">
             <div id="loadingIcon">Loading... <img src="App_Res/Images/Incident/loading.gif" alt="Loading"></div>
-            <button type="button" class="btn btn-sm btnClass" id="alertAddBtn">Add</button>
+            <button type="button" class="btn btn-sm btnClass" id="alert${_mode}Btn">${_mode}</button>
             <button type="button" class="btn btn-sm btnClass" onclick="$('#alertModal').remove()">Close</button>
           </div>
         </div>
@@ -321,25 +326,58 @@ function FilterOptBtn(_objKey) {
       $("#searchBtn").val("");
 
       // ✅ فقط اجرای aData برای View All
-      const queryCode = 6220009;
       $loading.show();
 
-      const AlertLimitedPromise = new Promise((resolve, reject) => {
-        _data = new aData(queryCode, null, _objKey, "", true);
-        let timer = setInterval(() => {
-          let value = _data.getList();
-          if (value && value.length > 0) {
-            clearInterval(timer);
-            resolve(value);
-          }
-        }, 1);
+
+      $.ajax({
+        type: "POST",
+        url: "../../App_Sys/Services/CustomActivity.asmx/GetFiltered",
+        data: JSON.stringify({
+          ids: "ViewAll",
+          startDate: "",
+          endDate: "",
+          instanceId: _objKey.toString(),
+          color: "",
+          mode: _mode,
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+          let val = JSON.parse(response.d);
+          $loading.hide();
+          $("#MessageTable").remove();
+          (_mode == "MoveTo") ? MoveToTbl(val) :
+            AlertTbl(val);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error("Ajax Error:", jqXHR.responseText);
+          alert("Error:\n" + jqXHR.responseText);
+        },
       });
 
-      AlertLimitedPromise.then((val) => {
-        $loading.hide();
-        $("#MessageTable").remove();
-        AlertTbl(val);
-      });
+      // let queryCode;
+      // ? queryCode = 6220010 :
+      //   queryCode = 6220009;
+
+
+
+      // const AlertLimitedPromise = new Promise((resolve, reject) => {
+      //   _data = new aData(queryCode, null, _objKey, "", true);
+      //   let timer = setInterval(() => {
+      //     let value = _data.getList();
+      //     if (value && value.length > 0) {
+      //       clearInterval(timer);
+      //       resolve(value);
+      //     }
+      //   }, 1);
+      // });
+
+      // AlertLimitedPromise.then((val) => {
+      // $loading.hide();
+      // $("#MessageTable").remove();
+      // (_mode == "MoveTo") ? MoveToTbl(val) :
+      //   AlertTbl(val);
+      // });
 
       return; // پایان حالت View All
     }
@@ -372,7 +410,7 @@ function FilterOptBtn(_objKey) {
       })
       .get();
 
-    if (activeBtnIds.length) Filter($btn.attr("id"), activeBtnIds, _objKey);
+    if (activeBtnIds.length) Filter($btn.attr("id"), activeBtnIds, _objKey, _mode);
   });
 }
 
